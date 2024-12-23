@@ -1,0 +1,983 @@
+﻿@{
+    ViewData["Title"] = "Home";
+
+}
+
+<!-- Custom Styling for Larger Table Display -->
+<style>
+
+
+    .bg-bright-green {
+        background-color: #28a745; /* Bright green color */
+        color: white; /* White text color */
+    }
+
+    .bg-red {
+        background-color: #dc3545; /* Red color */
+        color: white; /* White text color */
+    }
+
+    #t-inventory .handsontable .htCore {
+        font-size: 16px; /* Larger font for better readability */
+        padding: 10px; /* Add padding to cells */
+    }
+
+    #t-inventory .ht_master .htCore td,
+    #t-inventory .ht_master .htCore th {
+        height: auto; /* Auto-adjust row height */
+    }
+
+    .row {
+        margin-bottom: 15px; /* Add some space between rows */
+    }
+
+    .input-group {
+        width: 100%; /* Ensure the input group takes full width */
+    }
+    #t-inventory {
+        overflow-x: auto;
+        border: 1px solid #dee2e6;
+        padding: 10px; /* Extra padding around the table */
+    }
+
+    .btn-lg {
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+    }
+
+    .progress {
+        height: 20px;
+    }
+
+    .card-title, .btn {
+        font-weight: 500;
+    }
+
+    .active {
+        background-color: #28a745; /* Bright green color */
+        color: white; /* White text color */
+    }
+
+    .inactive {
+        background-color: #dc3545; /* Red color for inactive */
+        color: white; /* White text color */
+    }
+
+</style>
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card mt-4">
+                    <div class="card-header">
+                        <div class="d-flex align-items-center">
+                            <h4 class="card-title mb-0">Upload</h4>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="d-flex align-items-center">
+                                    <input type="file" class="form-control" id="fileInput" />
+                                    <button class="btn btn-success ml-2" id="uploadButton" accept=".xlsx">Upload</button>
+                                </div>
+                                <br />
+                                <div class="progress mt-3" style="display: none;">
+                                    <div class="progress-bar" role="progressbar" id="progressBar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card mt-4">
+                    <div class="card-header">
+                        <div class="d-flex align-items-center">
+                            <h4 class="card-title mb-0">Monitoring</h4>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="d-flex flex-wrap mb-3 p-2">
+                                    <div class="d-flex flex-grow-1 flex-wrap">
+                                    <select id="filterArea" class="form-control filter-dropdown select2  mr-2" select2>
+                                        <option value="">Select Area</option>
+                                    </select>
+                                    <select id="filterCustomerName" class="form-control filter-dropdown select2  mr-2">
+                                        <option value="">Select Customer Name</option>
+                                    </select>
+                                    <select id="filterProduct" class="form-control filter-dropdown select2  mr-2">
+                                        <option value="">Select Product</option>
+                                    </select>
+                                    <select id="filterRemark" class="form-control filter-dropdown select2  mr-2">
+                                        <option value="">Select Remark</option>
+                                    </select>
+                                    <select id="filterMonth" class="form-control filter-dropdown select2  mr-2">
+                                        <option value="">Select Month</option>
+                                    </select>
+                                    <select id="filterPeriod" class="form-control filter-dropdown select2  mr-2">
+                                        <option value="">Select Period</option>
+                                    </select>
+                                    <select id="filterYear" class="form-control filter-dropdown select2  mr-2">
+                                        <option value="">Select Year</option>
+                                    </select>
+                                    <select id="filterPLANT" class="form-control filter-dropdown select2  mr-2">
+                                        <option value="">Select PLANT</option>
+                                    </select>
+                                    <select id="filterCategory1_8" class="form-control filter-dropdown select2  mr-2">
+                                        <option value="">Select Category 1-8</option>
+                                    </select>
+                                    <select id="filterFlourBranCategory" class="form-control filter-dropdown select2  mr-2">
+                                        <option value="">Select Flour Bran Category</option>
+                                    </select>
+                                    <select id="filterMPBPCategory" class="form-control filter-dropdown select2  mr-2">
+                                        <option value="">Select MPBP Category</option>
+                                    </select>
+                                    <select id="filterSeriesCategory" class="form-control filter-dropdown select2  mr-2">
+                                        <option value="">Select Series Category</option>
+                                    </select>
+                                    <select id="filterCustomerByChannel" class="form-control filter-dropdown select2  mr-2">
+                                        <option value="">Select Customer by Channel</option>
+                                    </select>
+                                    <select id="filterCustomerByArea" class="form-control filter-dropdown select2  mr-2">
+                                        <option value="">Select Customer by Area</option>
+                                    </select>
+                                    <select id="filterGTIndustrial" class="form-control filter-dropdown select2  mr-2">
+                                        <option value="">Select GT Industrial</option>
+                                    </select>
+                                    <select id="filterProductPurpose" class="form-control filter-dropdown select2  mr-2">
+                                        <option value="">Select Product Purpose</option>
+                                    </select>
+                                     
+                                </div>
+                                <div class="ml-auto">
+                                    <!-- This div pushes the button to the right -->
+                                    <button id="filterButton" class="btn btn-primary mt-2 mr-2">Filter</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h2>Replace Data</h2>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label for="headerSelect1">Select Header (WHERE)</label>
+                                <select id="headerSelect1" class="form-control select2" select2>
+                                    <option value="">Select Header</option>
+                                    <option value="Area">Area</option>
+                                    <option value="Location">Location</option>
+                                    <option value="Customer_No">Customer No</option>
+                                    <option value="Customer_Name">Customer Name</option>
+                                    <option value="Sales_Person">Sales Person</option>
+                                    <option value="Dscription">Dscription</option>
+                                    <option value="Product">Product</option>
+                                    <option value="ACT_MT">ACT MT</option>
+                                    <option value="ACT_Gross_Sales">ACT Gross Sales</option>
+                                    <option value="ACT_Freight_Local">ACT_Freight_Local</option>
+                                    <option value="ACT_Whs_Trf">ACT_Whs_Trf</option>
+                                    <option value="ACT_Freight_Export">ACT_Freight_Export</option>
+                                    <option value="ACT_Loco_Sales">ACT_Loco_Sales</option>
+                                    <option value="ACT_DM_Utility_Cost">ACT_DM_Utility_Cost</option>
+                                    <option value="ACT_CM_Excl">ACT_CM_Excl</option>
+                                    <option value="ACT_FX">ACT_FX</option>
+                                    <option value="ACT_Interest">ACT_Interest</option>
+                                    <option value="ACTual_CM_Incl">ACTual_CM_Incl</option>
+                                    <option value="OPEX">OPEX</option>
+                                    <option value="Remark">Remark</option>
+                                    <option value="Month">Month</option>
+                                    <option value="Period">Period</option>
+                                    <option value="Year">Year</option>
+                                    <option value="Capacity">Capacity</option>
+                                    <option value="BGT_MT">BGT_MT</option>
+                                    <option value="BGT_Sales">BGT_Sales</option>
+                                    <option value="BGT_VC">BGT_VC</option>
+                                    <option value="BGT_CM">BGT_CM</option>
+                                    <option value="BGT_FX">BGT_FX</option>
+                                    <option value="BGT_Interest">BGT_Interest</option>
+                                    <option value="BGT_CM_Excl">BGT_CM_Excl</option>
+                                    <option value="FCT_MT">FCT_MT</option>
+                                    <option value="FCT_Sales">FCT_Sales</option>
+                                    <option value="FCT_VC">FCT_VC</option>
+                                    <option value="FCT_CM">FCT_CM</option>
+                                    <option value="PLANT">PLANT</option>
+                                    <option value="UOM">UOM</option>
+                                    <option value="Category_1_8">Category_1_8</option>
+                                    <option value="Flour_Bran_Category">Flour_Bran_Category</option>
+                                    <option value="MPBP_Category">MPBP_Category</option>
+                                    <option value="Series_Category">Series_Category</option>
+                                    <option value="Sales_Mix">Sales_Mix</option>
+                                    <option value="CONCATENATE1">CONCATENATE1</option>
+                                    <option value="Customer_by_Channel">Customer_by_Channel</option>
+                                    <option value="Customer_by_Area">Customer_by_Area</option>
+                                    <option value="GT_Industrial">GT_Industrial</option>
+                                    <option value="Customer_Business_Size">Customer Business Size</option>
+                                    <option value="Customers_Consumption">Customers Consumption</option>
+                                    <option value="Product_Purpose">Product Purpose</option>
+                                    <option value="Area_Only">Area Only</option>
+                                    <option value="Channel_by_Product">Channel by Product</option>
+                                    <option value="Biz_Type">Biz Type</option>
+                                    <option value="Biz_Size">Biz Size</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="distinctValueSelect">Select Value Header   (Value Where)</label>
+                                <select id="distinctValueSelect" class="form-control select2">
+                                    <option value="">Select Value</option>
+                                    <!-- Distinct values will be populated here -->
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="headerSelect2">Select Header 2 (Kolom Update)</label>
+                                <select id="headerSelect2" class="form-control select2">
+                                    <option value="">Select Header</option>
+                                    <option value="Area">Area</option>
+                                    <option value="Location">Location</option>
+                                    <option value="Customer_No">Customer No</option>
+                                    <option value="Customer_Name">Customer Name</option>
+                                    <option value="Sales_Person">Sales Person</option>
+                                    <option value="Dscription">Dscription</option>
+                                    <option value="Product">Product</option>
+                                    <option value="ACT_MT">ACT MT</option>
+                                    <option value="ACT_Gross_Sales">ACT Gross Sales</option>
+                                    <option value="ACT_Freight_Local">ACT_Freight_Local</option>
+                                    <option value="ACT_Whs_Trf">ACT_Whs_Trf</option>
+                                    <option value="ACT_Freight_Export">ACT_Freight_Export</option>
+                                    <option value="ACT_Loco_Sales">ACT_Loco_Sales</option>
+                                    <option value="ACT_DM_Utility_Cost">ACT_DM_Utility_Cost</option>
+                                    <option value="ACT_CM_Excl">ACT_CM_Excl</option>
+                                    <option value="ACT_FX">ACT_FX</option>
+                                    <option value="ACT_Interest">ACT_Interest</option>
+                                    <option value="ACTual_CM_Incl">ACTual_CM_Incl</option>
+                                    <option value="OPEX">OPEX</option>
+                                    <option value="Remark">Remark</option>
+                                    <option value="Month">Month</option>
+                                    <option value="Period">Period</option>
+                                    <option value="Year">Year</option>
+                                    <option value="Capacity">Capacity</option>
+                                    <option value="BGT_MT">BGT_MT</option>
+                                    <option value="BGT_Sales">BGT_Sales</option>
+                                    <option value="BGT_VC">BGT_VC</option>
+                                    <option value="BGT_CM">BGT_CM</option>
+                                    <option value="BGT_FX">BGT_FX</option>
+                                    <option value="BGT_Interest">BGT_Interest</option>
+                                    <option value="BGT_CM_Excl">BGT_CM_Excl</option>
+                                    <option value="FCT_MT">FCT_MT</option>
+                                    <option value="FCT_Sales">FCT_Sales</option>
+                                    <option value="FCT_VC">FCT_VC</option>
+                                    <option value="FCT_CM">FCT_CM</option>
+                                    <option value="PLANT">PLANT</option>
+                                    <option value="UOM">UOM</option>
+                                    <option value="Category_1_8">Category_1_8</option>
+                                    <option value="Flour_Bran_Category">Flour_Bran_Category</option>
+                                    <option value="MPBP_Category">MPBP_Category</option>
+                                    <option value="Series_Category">Series_Category</option>
+                                    <option value="Sales_Mix">Sales_Mix</option>
+                                    <option value="CONCATENATE1">CONCATENATE1</option>
+                                    <option value="Customer_by_Channel">Customer_by_Channel</option>
+                                    <option value="Customer_by_Area">Customer_by_Area</option>
+                                    <option value="GT_Industrial">GT_Industrial</option>
+                                    <option value="Customer_Business_Size">Customer Business Size</option>
+                                    <option value="Customers_Consumption">Customers Consumption</option>
+                                    <option value="Product_Purpose">Product Purpose</option>
+                                    <option value="Area_Only">Area Only</option>
+                                    <option value="Channel_by_Product">Channel by Product</option>
+                                    <option value="Biz_Type">Biz Type</option>
+                                    <option value="Biz_Size">Biz Size</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="distinctValueSelect2"> Select Value Header 2 (Value Ganti OLD)</label>
+                                <select id="distinctValueSelect2" class="form-control select2">
+                                    <option value="">Select Value</option>
+                                    <!-- Distinct values will be populated here -->
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="inputText">Input New Value </label>
+                            <div class="input-group">
+                                <input type="text" id="inputText" class="form-control" placeholder="Enter value" />
+                                <div class="input-group-append">
+                                    <button id="submitButton" class="btn btn-primary disabled ml-2">Replace All Data</button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    <div class="table-responsive m-2">
+                        <table id="table-monitoring" class="table table-hover table-bordered table-striped nowrap">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Upload Time</th>
+                                    <th>Is Active</th>
+                                    <th hidden>Action</th>
+                                    <th>Area</th>
+                                    <th>Location</th>
+                                    <th>Customer No</th>
+                                    <th>Customer Name</th>
+                                    <th>Sales Person</th>
+                                    <th>Description</th>
+                                    <th>Product</th>
+                                    <th>ACT - MT</th>
+                                    <th>ACT - Gross Sales</th>
+                                    <th>ACT - Freight Local</th>
+                                    <th>ACT - Whs Trf</th>
+                                    <th>ACT - Freight Export</th>
+                                    <th>ACT - Loco Sales</th>
+                                    <th>ACT - DM Utility Cost</th>
+                                    <th>ACT - CM Excl</th>
+                                    <th>ACT - FX</th>
+                                    <th>ACT - Interest</th>
+                                    <th>ACTual CM Incl</th>
+                                    <th>OPEX</th>
+                                    <th>Remark</th>
+                                    <th>Month</th>
+                                    <th>Period</th>
+                                    <th>Year</th>
+                                    <th>Capacity</th>
+                                    <th>BGT - MT</th>
+                                    <th>BGT - Sales</th>
+                                    <th>BGT - VC</th>
+                                    <th>BGT - CM</th>
+                                    <th>BGT - FX</th>
+                                    <th>BGT - Interest</th>
+                                    <th>BGT - CM Excl</th>
+                                    <th>FCT - MT</th>
+                                    <th>FCT - Sales</th>
+                                    <th>FCT - VC</th>
+                                    <th>FCT - CM</th>
+                                    <th>PLANT</th>
+                                    <th>UOM</th>
+                                    <th>Category 1-8</th>
+                                    <th>Flour Bran Category</th>
+                                    <th>MPBP Category</th>
+                                    <th>Series Category</th>
+                                    <th>Sales Mix</th>
+                                    <th>Concatenate</th>
+                                    <th>Customer by Channel</th>
+                                    <th>Customer by Area</th>
+                                    <th>GT Industrial</th>
+                                    <th>Customer Business Size</th>
+                                    <th>Customers Consumption</th>
+                                    <th>Product Purpose</th>
+                                    <th>Area Only</th>
+                                    <th>Channel by Product</th>
+                                    <th>Biz Type</th>
+                                    <th>Biz Size</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Baris akan dipenuhi di sini oleh JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+@section Scripts {
+    <script>
+
+        $(document).ready(function () {
+            function validateForm() {
+                const header1 = $('#headerSelect1').val();
+                const distinctValue1 = $('#distinctValueSelect').val();
+                const header2 = $('#headerSelect2').val();
+                const distinctValue2 = $('#distinctValueSelect2').val();
+                const inputText = $('#inputText').val();
+
+                // Enable the button if all fields are filled
+                if (header1 && distinctValue1 && header2 && distinctValue2 && inputText) {
+                    $('#submitButton').prop('disabled', false).removeClass('disabled');
+                } else {
+                    $('#submitButton').prop('disabled', true).addClass('disabled');
+                }
+            }
+
+            // Attach change event listeners to the dropdowns and input field
+            $('#headerSelect1, #distinctValueSelect, #headerSelect2, #distinctValueSelect2, #inputText').on('change keyup', function () {
+                validateForm();
+            });
+            // fetchTransaksiData();
+            $('#uploadButton').on('click', function () {
+                const fileInput = $('#fileInput')[0];
+                const file = fileInput.files[0];
+
+                if (!file) {
+                    alert('Please select a file to upload.');
+                    return;
+                }
+
+                const formData = new FormData();
+                formData.append('file', file);
+                $.ajax({
+                    url: '@Url.Action("Upload", "Home")', // Replace with your controller endpoint
+                    type: 'POST',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    xhr: function () {
+                        const xhr = new window.XMLHttpRequest();
+                        // Upload progress
+                        xhr.upload.addEventListener('progress', function (e) {
+                            if (e.lengthComputable) {
+                                const percentComplete = (e.loaded / e.total) * 100;
+                                $('#progressBar').css('width', percentComplete + '%').attr('aria-valuenow', percentComplete).text(Math.round(percentComplete) + '%');
+                            }
+                        }, false);
+                        return xhr;
+                    },
+                    beforeSend: function () {
+                        $('.progress').show(); // Show progress bar
+                        $('#progressBar').css('width', '0%').attr('aria-valuenow', 0).text('0%'); // Reset progress bar
+                    },
+                    success: function (response) {
+                        alert('File uploaded successfully!');
+                        fetchTransaksiData(); // Fetch data after successful upload
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        alert('Error uploading file: ' + textStatus);
+                    },
+                    complete: function () {
+                        $('.progress').hide(); // Hide progress bar after completion
+                    }
+                });
+            });
+            fetchDistinctData();
+            // Function to fetch data from the controller
+            // function fetchTransaksiData() {
+            //     $.ajax({
+            //         type: "GET",
+            //         url: "@Url.Action("GetAll", "Home")",
+            //         dataType: "json",
+            //         success: function (response) {
+            //             populateTable(response.data);
+            //         },
+            //         error: function (xhr, status, error) {
+            //             console.error("Error fetching data: ", error);
+            //         }
+            //     });
+            // }
+            function formatDate(dateString) {
+                return moment(dateString).format('DD MMMM YYYY'); // Format to dd/MMMM/yyyy
+            }
+            function fetchDistinctData() {
+                const endpoints = [
+                    { id: 'filterArea', url: '@Url.Action("GetDistinctArea", "Home")' },
+                    { id: 'filterCustomerName', url: '@Url.Action("GetDistinctCustomerName", "Home")' },
+                    { id: 'filterProduct', url: '@Url.Action("GetDistinctProduct", "Home")' },
+                    { id: 'filterRemark', url: '@Url.Action("GetDistinctRemark", "Home")' },
+                    { id: 'filterMonth', url: '@Url.Action("GetDistinctMonth", "Home")' },
+                    { id: 'filterPeriod', url: '@Url.Action("GetDistinctPeriod", "Home")' },
+                    { id: 'filterYear', url: '@Url.Action("GetDistinctYear", "Home")' },
+                    { id: 'filterPLANT', url: '@Url.Action("GetDistinctPlant", "Home")' },
+                    { id: 'filterCategory1_8', url: '@Url.Action("GetDistinctCategory1_8", "Home")' },
+                    { id: 'filterFlourBranCategory', url: '@Url.Action("GetDistinctFlourBranCategory", "Home")' },
+                    { id: 'filterMPBPCategory', url: '@Url.Action("GetDistinctMPBP_Category", "Home")' },
+                    { id: 'filterSeriesCategory', url: '@Url.Action("GetDistinctSeriesCategory", "Home")' },
+                    { id: 'filterCustomerByChannel', url: '@Url.Action("GetDistinctCustomerByChannel", "Home")' },
+                    { id: 'filterCustomerByArea', url: '@Url.Action("GetDistinctCustomerByArea", "Home")' },
+                    { id: 'filterGTIndustrial', url: '@Url.Action("GetDistinctGT_Industrial", "Home")' },
+                    { id: 'filterProductPurpose', url: '@Url.Action("GetDistinctProductPurpose", "Home")' }
+                ];
+
+                endpoints.forEach(endpoint => {
+                    $.ajax({
+                        type: "GET",
+                        url: endpoint.url,
+                        dataType: "json",
+                        success: function (data) {
+                            populateDropdown(endpoint.id, data);
+                        },
+                        error: function (xhr, status, error) {
+                            console.error(`Error fetching distinct data for ${endpoint.id}: `, error);
+                        }
+                    });
+                });
+            }
+            function populateDropdown(dropdownId, data) {
+                const dropdown = $(`#${dropdownId}`);
+                dropdown.empty().append(`<option value="">Select ${dropdownId.replace('filter', '')}</option>`);
+                data.forEach(item => {
+                    dropdown.append(`<option value="${item}">${item}</option>`);
+                });
+            }
+
+            // Filter button click event
+            $('#filterButton').on('click', function () {
+                const filters = {
+                    area: $('#filterArea').val(),
+                    customerName: $('#filterCustomerName').val(),
+                    product: $('#filterProduct').val(),
+                    remark: $('#filterRemark').val(),
+                    month: $('#filterMonth').val(),
+                    period: $('#filterPeriod').val(),
+                    year: $('#filterYear').val(),
+                    plant: $('#filterPLANT').val(),
+                    category1_8: $('#filterCategory1_8').val(),
+                    flour_bran_category: $('#filterFlourBranCategory').val(),
+                    mpbp_category: $('#filterMPBPCategory').val(),
+                    series_category: $('#filterSeriesCategory').val(),
+                    customer_by_channel: $('#filterCustomerByChannel').val(),
+                    customer_by_area: $('#filterCustomerByArea').val(),
+                    gt_industrial: $('#filterGTIndustrial').val(),
+                    product_purpose: $('#filterProductPurpose').val(),
+                };
+                fetchFilteredData(filters);
+            });
+            
+            function fetchFilteredData(filters) {
+                $.ajax({
+                    type: "GET",
+                    url: "@Url.Action("GetFilteredTransaksi", "Home")", // Ganti dengan endpoint yang sesuai
+                    data: filters,
+                    dataType: "json",
+                    success: function (response) {
+                        console.log("Filtered data response:", response.data); // Log the response for debugging
+                        populateTable(response.data);
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("Error fetching filtered data: ", error);
+                    }
+                });
+            }
+  
+            function populateTable(data) {
+                var table = new DataTable('#table-monitoring');
+                table.destroy();
+                const tbody = $('#table-monitoring tbody');
+                $('#table-monitoring tbody').empty();
+
+               // tbody.empty(); // Clear existing rows
+                // Check if data is defined and is an array
+                if (data && Array.isArray(data)) {
+                    data.forEach((item, index) => {
+                        const activeClass = item.isActive ? 'active' : 'inactive';
+                        const row = ` <tr data-id="${item.id}"> <!-- Store the ID for updates -->
+                                                             <td>${index + 1}</td>
+                                                             <td>${formatDate(item.uploadTime)}</td>
+                                                             <td> <select  class="form-control is-active-dropdown" data-id="${item.id}">
+                                                                    <option value="true" ${item.isActive ? 'selected' : ''}>Yes</option>
+                                                                    <option value="false" ${!item.isActive ? 'selected' : ''}>No</option>
+                                                                   </select>
+                                                            </td>
+                                                            <td hidden>  <button class="btn btn-primary update-button" data-id=${item.id}>Update</button>   </td>
+                                                            <td contenteditable="true" class="editable">${item.area}</td>
+                                                            <td contenteditable="true" class="editable">${item.location || 'N/A'}</td>
+                                                            <td contenteditable="true" class="editable">${item.customer_No || 'N/A'}</td>
+                                                            <td contenteditable="true" class="editable">${item.customer_Name}</td>
+                                                            <td contenteditable="true" class="editable">${item.sales_Person}</td>
+                                                            <td contenteditable="true" class="editable">${item.dscription}</td>
+                                                            <td contenteditable="true" class="editable">${item.product}</td>
+                                                            <td contenteditable="true" class="editable">${item.acT_MT}</td>
+                                                            <td contenteditable="true" class="editable">${item.acT_Gross_Sales}</td>
+                                                            <td contenteditable="true" class="editable">${item.acT_Freight_Local}</td>
+                                                            <td contenteditable="true" class="editable">${item.acT_Whs_Trf}</td>
+                                                            <td contenteditable="true" class="editable">${item.acT_Freight_Export}</td>
+                                                            <td contenteditable="true" class="editable">${item.acT_Loco_Sales}</td>
+                                                            <td contenteditable="true" class="editable">${item.acT_DM_Utility_Cost}</td>
+                                                            <td contenteditable="true" class="editable">${item.acT_CM_Excl}</td>
+                                                            <td contenteditable="true" class="editable">${item.acT_FX}</td>
+                                                            <td contenteditable="true" class="editable">${item.acT_Interest}</td>
+                                                            <td contenteditable="true" class="editable">${item.acTual_CM_Incl}</td>
+                                                            <td contenteditable="true" class="editable">${item.opex}</td>
+                                                             <td contenteditable="true" class="editable">${item.remark}</td>
+                                                             <td contenteditable="true" class="editable">${item.month}</td>
+                                                             <td contenteditable="true" class="editable">${item.period}</td>
+                                                             <td contenteditable="true" class="editable">${item.year}</td>
+                                                            <td contenteditable="true" class="editable">${item.capacity}</td>
+                                                            <td contenteditable="true" class="editable">${item.bgT_MT}</td>
+                                                            <td contenteditable="true" class="editable">${item.bgT_Sales}</td>
+                                                            <td contenteditable="true" class="editable">${item.bgT_VC}</td>
+                                                            <td contenteditable="true" class="editable">${item.bgT_CM}</td>
+                                                            <td contenteditable="true" class="editable">${item.bgT_FX}</td>
+                                                            <td contenteditable="true" class="editable">${item.bgT_Interest}</td>
+                                                            <td contenteditable="true" class="editable">${item.bgT_CM_Excl}</td>
+                                                            <td contenteditable="true" class="editable">${item.fcT_MT}</td>
+                                                            <td contenteditable="true" class="editable">${item.fcT_Sales}</td>
+                                                            <td contenteditable="true" class="editable">${item.fcT_VC}</td>
+                                                            <td contenteditable="true" class="editable">${item.fcT_CM}</td>
+                                                            <td contenteditable="true" class="editable">${item.plant}</td>
+                                                             <td contenteditable="true" class="editable">${item.uom}</td>
+                                                             <td contenteditable="true" class="editable">${item.category_1_8}</td>
+                                                             <td contenteditable="true" class="editable">${item.flour_Bran_Category}</td>
+                                                             <td contenteditable="true" class="editable">${item.mpbP_Category}</td>
+                                                             <td contenteditable="true" class="editable">${item.series_Category}</td>
+                                                             <td contenteditable="true" class="editable">${item.sales_Mix}</td>
+                                                             <td contenteditable="true" class="editable">${item.concatenatE1}</td>
+                                                             <td contenteditable="true" class="editable">${item.customer_by_Channel}</td>
+                                                             <td contenteditable="true" class="editable">${item.customer_by_Area}</td>
+                                                             <td contenteditable="true" class="editable">${item.gT_Industrial}</td>
+                                                             <td contenteditable="true" class="editable">${item.customer_Business_Size }</td>
+                                                             <td contenteditable="true" class="editable">${item.customers_Consumption}</td>
+                                                             <td contenteditable="true" class="editable">${item.product_Purpose}</td>
+                                                             <td contenteditable="true" class="editable">${item.area_Only}</td>
+                                                             <td contenteditable="true" class="editable">${item.channel_by_Product }</td>
+                                                             <td contenteditable="true" class="editable">${item.biz_Type }</td>
+                                                             <td contenteditable="true" class="editable">${item.biz_Size}</td>
+
+                                                        </tr>
+                                                    `;
+                        tbody.append(row); // Append the new row to the table body
+                    });
+                    // Reinitialize the DataTable after populating
+           
+                    initializeDataTable();
+
+                }
+                else {
+                    console.error('Data is not an array or is undefined:', data);
+                }
+            }
+
+            function initializeDataTable() {
+               
+
+                $('#table-monitoring').DataTable({
+                    lengthMenu: [
+                        [20, 25, 50, -1],
+                        [20, 25, 50, 'All'],
+                    ],
+                    dom: 'Blfrtip', // Specify the layout
+                    buttons: [
+                        {
+                            extend: 'excelHtml5', // Button to export to Excel
+                            text: 'Download Excel Table', // Button text
+                            className: 'btn btn-success m-2' // Bootstrap class for styling
+                        }
+                    ],
+                    order: [], // Disable initial sorting
+                    searching: true, // Enable searching
+                    paging: true, // Enable pagination
+                    info: true, // Show info about the table
+                    lengthChange: true, // Allow changing the number of records per page
+                    autoWidth: false // Disable auto width
+                });
+            }
+
+            $('#table-monitoring').on('click', '.update-button', function () {
+                const row = $(this).closest('tr');
+                const id = $(this).data('id');
+                const isActive = row.find('.is-active-dropdown').val() === 'true';
+
+                // Collecting all necessary fields from the row
+                const area = row.find('td:nth-child(5)').text();
+                const location = row.find('td:nth-child(6)').text();
+                const customerNo = row.find('td:nth-child(7)').text();
+                const customerName = row.find('td:nth-child(8)').text();
+                const salesPerson = row.find('td:nth-child(9)').text();
+                const description = row.find('td:nth-child(10)').text();
+                const product = row.find('td:nth-child(11)').text();
+
+                // Collecting additional fields
+                const actMT = row.find('td:nth-child(12)').text();
+                const actGrossSales = row.find('td:nth-child(13)').text();
+                const actFreightLocal = row.find('td:nth-child(14)').text();
+                const actWhsTrf = row.find('td:nth-child(15)').text();
+                const actFreightExport = row.find('td:nth-child(16)').text();
+                const actLocoSales = row.find('td:nth-child(17)').text();
+                const actDMUtilityCost = row.find('td:nth-child(18)').text();
+                const actCMExcl = row.find('td:nth-child(19)').text();
+                const actFX = row.find('td:nth-child(20)').text();
+                const actInterest = row.find('td:nth-child(21)').text();
+                const actualCMIncl = row.find('td:nth-child(22)').text();
+                const opex = row.find('td:nth-child(23)').text();
+                const month = row.find('td:nth-child(24)').text();
+                const period = row.find('td:nth-child(25)').text();
+                const year = row.find('td:nth-child(26)').text();
+                const capacity = row.find('td:nth-child(27)').text();
+                const bgtMT = row.find('td:nth-child(28)').text();
+                const bgtSales = row.find('td:nth-child(29)').text();
+                const bgtVC = row.find('td:nth-child(30)').text();
+                const bgtCM = row.find('td:nth-child(31)').text();
+                const bgtFX = row.find('td:nth-child(32)').text();
+                const bgtInterest = row.find('td:nth-child(33)').text();
+                const bgtCMExcl = row.find('td:nth-child(34)').text();
+                const fctMT = row.find('td:nth-child(35)').text();
+                const fctSales = row.find('td:nth-child(36)').text();
+                const fctVC = row.find('td:nth-child(37)').text();
+                const fctCM = row.find('td:nth-child(38)').text();
+                const plant = row.find('td:nth-child(39)').text();
+                const uom = row.find('td:nth-child(40)').text();
+                const category1_8 = row.find('td:nth-child(41)').text();
+                const flourBranCategory = row.find('td:nth-child(42)').text();
+                const mpbpCategory = row.find('td:nth-child(43)').text();
+                const seriesCategory = row.find('td:nth-child(44)').text();
+                const salesMix = row.find('td:nth-child(45)').text();
+                const concatenate1 = row.find('td:nth-child(46)').text();
+                const customerByChannel = row.find('td:nth-child(47)').text();
+                const customerByArea = row.find('td:nth-child(48)').text();
+                const gtIndustrial = row.find('td:nth-child(49)').text();
+                const customerBusinessSize = row.find('td:nth-child(50)').text();
+                const customersConsumption = row.find('td:nth-child(51)').text();
+                const productPurpose = row.find('td:nth-child(52)').text();
+                const areaOnly = row.find('td:nth-child(53)').text();
+                const channelByProduct = row.find('td:nth-child(54)').text();
+                const bizType = row.find('td:nth-child(55)').text();
+                const bizSize = row.find('td:nth-child(56)').text();
+
+                // Constructing the updatedData object
+                const updatedData = {
+                    Id: id,
+                    IsActive: isActive,
+                    Area: area,
+                    Location: location,
+                    Customer_No: customerNo,
+                    Customer_Name: customerName,
+                    Sales_Person: salesPerson,
+                    Dscription: description,
+                    Product: product,
+                    ACT_MT: actMT,
+                    ACT_Gross_Sales: actGrossSales,
+                    ACT_Freight_Local: actFreightLocal,
+                    ACT_Whs_Trf: actWhsTrf,
+                    ACT_Freight_Export: actFreightExport,
+                    ACT_Loco_Sales: actLocoSales,
+                    ACT_DM_Utility_Cost: actDMUtilityCost,
+                    ACT_CM_Excl: actCMExcl,
+                    ACT_FX: actFX,
+                    ACT_Interest: actInterest,
+                    ACTual_CM_Incl: actualCMIncl,
+                    OPEX: opex,
+                    Month: month,
+                    Period: period,
+                    Year: year,
+                    Capacity: capacity,
+                    BGT_MT: bgtMT,
+                    BGT_Sales: bgtSales,
+                    BGT_VC: bgtVC,
+                    BGT_CM: bgtCM,
+                    BGT_FX: bgtFX,
+                    BGT_Interest: bgtInterest,
+                    BGT_CM_Excl: bgtCMExcl,
+                    FCT_MT: fctMT,
+                    FCT_Sales: fctSales,
+                    FCT_VC: fctVC,
+                    FCT_CM: fctCM,
+                    PLANT: plant,
+                    UOM: uom,
+                    Category_1_8: category1_8,
+                    Flour_Bran_Category: flourBranCategory,
+                    MPBP_Category: mpbpCategory,
+                    Series_Category: seriesCategory,
+                    Sales_Mix: salesMix,
+                    CONCATENATE1: concatenate1,
+                    Customer_by_Channel: customerByChannel,
+                    Customer_by_Area: customerByArea,
+                    GT_Industrial: gtIndustrial,
+                    Customer_Business_Size: customerBusinessSize,
+                    Customers_Consumption: customersConsumption,
+                    Product_Purpose: productPurpose,
+                    Area_Only: areaOnly,
+                    Channel_by_Product: channelByProduct,
+                    Biz_Type: bizType,
+                    Biz_Size: bizSize,
+                };
+
+                // console.log(updatedData);
+                // return;
+                // Send the updated data to the server
+                $.ajax({
+                    url: '@Url.Action("Update", "Home")', // Replace with your controller endpoint
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(updatedData),
+                    success: function (response) {
+                        alert('Data updated successfully!');
+
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        alert('Error updating data: ' + textStatus);
+                    }
+                });
+            });
+
+            // Add change event listener to the dropdown
+            $('#table-monitoring').on('change', '.is-active-dropdown', function () {
+                const row = $(this).closest('tr');
+                const id = row.data('id'); // Get the ID of the row
+                const isActive = $(this).val() === 'true'; // Get the selected value from the dropdown
+
+                // Prepare the updated data object
+                const updatedData = {
+                    Id: id,
+                    IsActive: isActive
+                };
+                console.log(updatedData);
+                // Call the update function to send the data to the server
+                updateTransaksi(updatedData);
+            });
+
+            // Add blur event listener to editable cells
+            $('#table-monitoring').on('blur', '.editable', function () {
+                const row = $(this).closest('tr');
+                const id = row.data('id'); // Get the ID of the row
+                const updatedData = {
+                    Id: id,
+                    IsActive: row.find('.is-active-dropdown').val() === 'true' // Get the selected value from the dropdown
+                };
+
+                // Collect updated values from editable cells
+                let hasChanges = false; // Flag to check if there are changes
+                row.find('.editable').each(function (index) {
+                    const columnName = getColumnName(index); // Get the column name based on index
+                    const newValue = $(this).text(); // Get the new value
+                    if (updatedData[columnName] !== newValue) {
+                        updatedData[columnName] = newValue; // Update the value if it has changed
+                        hasChanges = true; // Set the flag to true
+                    }
+                });
+
+                // Only send the update request if there are changes
+                if (hasChanges) {
+                    updateTransaksi(updatedData);
+                }
+            });
+
+            // Function to send the update request to the server
+            function updateTransaksi(updatedData) {
+                $.ajax({
+                    url: '@Url.Action("Update", "Home")', // Replace with your controller endpoint
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(updatedData),
+                    success: function (response) {
+                        // alert('Update successful!');
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("Error updating data: ", error);
+                        alert('Error updating data: ' + error);
+                    }
+                });
+            }
+
+            // Function to map column index to property name
+            function getColumnName(index) {
+                const columnNames = [
+                    'area', 'location', 'customer_No', 'customer_Name', 'sales_Person',
+                    'dscription', 'product', 'acT_MT', 'acT_Gross_Sales', 'acT_Freight_Local',
+                    'acT_Whs_Trf', 'acT_Freight_Export', 'acT_Loco_Sales', 'acT_DM_Utility_Cost',
+                    'acT_CM_Excl', 'acT_FX', 'acT_Interest', 'acTual_CM_Incl', 'opex', 'remark',
+                    'month', 'period', 'year', 'capacity', 'bgT_MT', 'bgT_Sales',
+                    'bgT_VC', 'bgT_CM', 'bgT_FX', 'bgT_Interest', 'bgT_CM_Excl',
+                    'fcT_MT', 'fcT_Sales', 'fcT_VC', 'fcT_CM', 'plant', 'uom',
+                    'category_1_8', 'flour_Bran_Category', 'mpbP_Category', 'series_Category',
+                    'sales_Mix', 'concatenatE1', 'customer_by_Channel', 'customer_by_Area',
+                    'gT_Industrial', 'customer_Business_Size', 'customers_Consumption',
+                    'product_Purpose', 'area_Only', 'channel_by_Product', 'biz_Type', 'biz_Size'
+                ];
+                return columnNames[index]; // Return the corresponding property name
+            }
+
+            $('#headerSelect1').on('change', function () {
+                const selectedHeader = $(this).val();
+                if (selectedHeader) {
+                    $.ajax({
+                        url: '@Url.Action("GetDistinctValues", "Home")', // Adjust the URL to your controller action
+                        type: 'GET',
+                        data: { header: selectedHeader },
+                        success: function (data) {
+                            const distinctValueSelect = $('#distinctValueSelect');
+                            distinctValueSelect.empty().append('<option value="">Select Value</option>');
+                            data.forEach(function (item) {
+                                distinctValueSelect.append(`<option value="${item}">${item}</option>`);
+                            });
+                        },
+                        error: function (xhr, status, error) {
+                            console.error("Error fetching distinct values: ", error);
+                        }
+                    });
+                } else {
+                    $('#distinctValueSelect').empty().append('<option value="">Select Value</option>');
+                }
+            });
+
+            $('#headerSelect2').on('change', function () {
+                const selectedHeader1 = $('#headerSelect1').val(); // Get the first header
+                const distinctValue = $('#distinctValueSelect').val(); // Get the selected distinct value
+                const selectedHeader2 = $(this).val(); // Get the second header
+                if (selectedHeader2 && selectedHeader1 && distinctValue) {
+                    $.ajax({
+                        url: '@Url.Action("GetDistinctValues2", "Home")', // Adjust the URL to your controller action
+                        type: 'GET',
+                        data: { selectedHeader1: selectedHeader1, distinctValue: distinctValue, selectedHeader2: selectedHeader2 },
+                        success: function (data) {
+                            const distinctValueSelect2 = $('#distinctValueSelect2');
+                            distinctValueSelect2.empty().append('<option value="">Select Value</option>');
+                            data.forEach(function (item) {
+                                distinctValueSelect2.append(`<option value="${item}">${item}</option>`);
+                            });
+                        },
+                        error: function (xhr, status, error) {
+                            console.error("Error fetching distinct values: ", error);
+                        }
+                    });
+                } else {
+                    $('#distinctValueSelect2').empty().append('<option value="">Select Value</option>');
+                }
+            });
+           
+            // Event listener for the submit button
+            $('#submitButton').on('click', function () {
+                const header1 = $('#headerSelect1').val();
+                const distinctValue = $('#distinctValueSelect').val();
+                const header2 = $('#headerSelect2').val();
+                const distinctValue2 = $('#distinctValueSelect2').val();
+                const inputText = $('#inputText').val();
+                if (!header1 || !distinctValue  || !header2 || !distinctValue2 || !inputText) {
+                    // Show SweetAlert error message
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',   
+                        text: 'Please fill in all fields before proceeding!',
+                    });
+                } else {
+                    // Proceed with your data replacement logic here
+                    console.log("All fields are filled. Proceeding with data replacement...");
+                    // Add your data replacement logic here
+                }
+                // Prepare data to send to the server
+                const data = {
+                    Header1: header1,
+                    DistinctValue: distinctValue,
+                    Header2: header2,
+                    DistinctValue2: distinctValue2,
+                    InputText: inputText
+                };
+
+                $.ajax({
+                    url: '@Url.Action("SubmitData", "Home")', // Adjust the URL to your controller action
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(data),
+                    success: function (response) {
+                        alert('Data submitted successfully!');
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("Error submitting data: ", error);
+                      //  alert('Error submitting data: ' + error);
+                    }
+                });
+            });
+
+
+
+        });
+
+    </script>
+}
