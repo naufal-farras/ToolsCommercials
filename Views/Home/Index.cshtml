@@ -78,8 +78,8 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="d-flex align-items-center">
-                                    <input type="file" class="form-control" id="fileInput" />
-                                    <button class="btn btn-success ml-2" id="uploadButton" accept=".xlsx">Upload</button>
+                                    <input type="file" class="form-control" id="fileInput" accept=".xlsx" />
+                                    <button class="btn btn-success ml-2" id="uploadButton" >Upload</button>
                                 </div>
                                 <br />
                                 <div class="progress mt-3" style="display: none;">
@@ -168,8 +168,8 @@
                             </div>
                         </div>
 
-                        <h2>Replace Data</h2>
-                        <div class="row">
+                        @* <h2>Replace Data</h2> *@
+                     @*    <div class="row">
                             <div class="col-md-3">
                                 <label for="headerSelect1">Select Header (WHERE)</label>
                                 <select id="headerSelect1" class="form-control select2" select2>
@@ -180,8 +180,8 @@
                                     <option value="Customer_Name">Customer Name</option>
                                     <option value="Sales_Person">Sales Person</option>
                                     <option value="Dscription">Dscription</option>
-                                    <option value="Product">Product</option>
-                                    <option value="ACT_MT">ACT MT</option>
+                                    <option value="Product">Product</option> *@
+                                   @*  <option value="ACT_MT">ACT MT</option>
                                     <option value="ACT_Gross_Sales">ACT Gross Sales</option>
                                     <option value="ACT_Freight_Local">ACT_Freight_Local</option>
                                     <option value="ACT_Whs_Trf">ACT_Whs_Trf</option>
@@ -192,12 +192,12 @@
                                     <option value="ACT_FX">ACT_FX</option>
                                     <option value="ACT_Interest">ACT_Interest</option>
                                     <option value="ACTual_CM_Incl">ACTual_CM_Incl</option>
-                                    <option value="OPEX">OPEX</option>
-                                    <option value="Remark">Remark</option>
+                                    <option value="OPEX">OPEX</option> *@
+                                   @*  <option value="Remark">Remark</option>
                                     <option value="Month">Month</option>
                                     <option value="Period">Period</option>
-                                    <option value="Year">Year</option>
-                                    <option value="Capacity">Capacity</option>
+                                    <option value="Year">Year</option> *@
+                                  @*   <option value="Capacity">Capacity</option>
                                     <option value="BGT_MT">BGT_MT</option>
                                     <option value="BGT_Sales">BGT_Sales</option>
                                     <option value="BGT_VC">BGT_VC</option>
@@ -208,10 +208,10 @@
                                     <option value="FCT_MT">FCT_MT</option>
                                     <option value="FCT_Sales">FCT_Sales</option>
                                     <option value="FCT_VC">FCT_VC</option>
-                                    <option value="FCT_CM">FCT_CM</option>
-                                    <option value="PLANT">PLANT</option>
-                                    <option value="UOM">UOM</option>
-                                    <option value="Category_1_8">Category_1_8</option>
+                                    <option value="FCT_CM">FCT_CM</option> *@
+                                    @* <option value="PLANT">PLANT</option> *@
+                                    @* <option value="UOM">UOM</option> *@
+                                   @*  <option value="Category_1_8">Category_1_8</option>
                                     <option value="Flour_Bran_Category">Flour_Bran_Category</option>
                                     <option value="MPBP_Category">MPBP_Category</option>
                                     <option value="Series_Category">Series_Category</option>
@@ -227,9 +227,10 @@
                                     <option value="Channel_by_Product">Channel by Product</option>
                                     <option value="Biz_Type">Biz Type</option>
                                     <option value="Biz_Size">Biz Size</option>
+                                    <option value="IsActive">IsActive</option>
                                 </select>
-                            </div>
-                            <div class="col-md-3">
+                            </div> *@
+                          @*   <div class="col-md-3">
                                 <label for="distinctValueSelect">Select Value Header   (Value Where)</label>
                                 <select id="distinctValueSelect" class="form-control select2">
                                     <option value="">Select Value</option>
@@ -247,7 +248,7 @@
                                     <option value="Sales_Person">Sales Person</option>
                                     <option value="Dscription">Dscription</option>
                                     <option value="Product">Product</option>
-                                    <option value="ACT_MT">ACT MT</option>
+                                    @*  <option value="ACT_MT">ACT MT</option>
                                     <option value="ACT_Gross_Sales">ACT Gross Sales</option>
                                     <option value="ACT_Freight_Local">ACT_Freight_Local</option>
                                     <option value="ACT_Whs_Trf">ACT_Whs_Trf</option>
@@ -258,12 +259,12 @@
                                     <option value="ACT_FX">ACT_FX</option>
                                     <option value="ACT_Interest">ACT_Interest</option>
                                     <option value="ACTual_CM_Incl">ACTual_CM_Incl</option>
-                                    <option value="OPEX">OPEX</option>
-                                    <option value="Remark">Remark</option>
+                                    <option value="OPEX">OPEX</option> *@
+                                @*     <option value="Remark">Remark</option>
                                     <option value="Month">Month</option>
                                     <option value="Period">Period</option>
-                                    <option value="Year">Year</option>
-                                    <option value="Capacity">Capacity</option>
+                                    <option value="Year">Year</option> *@
+                                    @*   <option value="Capacity">Capacity</option>
                                     <option value="BGT_MT">BGT_MT</option>
                                     <option value="BGT_Sales">BGT_Sales</option>
                                     <option value="BGT_VC">BGT_VC</option>
@@ -274,10 +275,10 @@
                                     <option value="FCT_MT">FCT_MT</option>
                                     <option value="FCT_Sales">FCT_Sales</option>
                                     <option value="FCT_VC">FCT_VC</option>
-                                    <option value="FCT_CM">FCT_CM</option>
-                                    <option value="PLANT">PLANT</option>
-                                    <option value="UOM">UOM</option>
-                                    <option value="Category_1_8">Category_1_8</option>
+                                    <option value="FCT_CM">FCT_CM</option> *@
+                                    @* <option value="PLANT">PLANT</option> *@
+                                    @* <option value="UOM">UOM</option> *@
+                                  @*   <option value="Category_1_8">Category_1_8</option>
                                     <option value="Flour_Bran_Category">Flour_Bran_Category</option>
                                     <option value="MPBP_Category">MPBP_Category</option>
                                     <option value="Series_Category">Series_Category</option>
@@ -293,7 +294,8 @@
                                     <option value="Channel_by_Product">Channel by Product</option>
                                     <option value="Biz_Type">Biz Type</option>
                                     <option value="Biz_Size">Biz Size</option>
-                                </select>
+                                    <option value="IsActive">IsActive</option> *@
+                               @*  </select>
                             </div>
                             <div class="col-md-3">
                                 <label for="distinctValueSelect2"> Select Value Header 2 (Value Ganti OLD)</label>
@@ -311,8 +313,7 @@
                                     <button id="submitButton" class="btn btn-primary disabled ml-2">Replace All Data</button>
                                 </div>
                             </div>
-                        </div>
-
+                        </div> *@
 
                     <div class="table-responsive m-2">
                         <table id="table-monitoring" class="table table-hover table-bordered table-striped nowrap">

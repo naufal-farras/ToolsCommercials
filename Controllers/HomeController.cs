@@ -46,6 +46,9 @@ namespace ToolsCommercial.Controllers
 
             switch (header)
             {
+                case "IsActive":
+                    distinctValues = _context.Transaksis.Select(t => t.IsActive.ToString()).Distinct().ToList();
+                    break;
                 case "Area":
                     distinctValues = _context.Transaksis.Select(t => t.Area).Distinct().ToList();
                     break;
@@ -240,18 +243,77 @@ namespace ToolsCommercial.Controllers
                 case "Sales_Person":
                     query = query.Where(t => t.Sales_Person == distinctValue);
                     break;
-
                 case "Dscription":
                     query = query.Where(t => t.Dscription == distinctValue);
                     break;
                 case "Product":
                     query = query.Where(t => t.Product == distinctValue);
                     break;
-                case "ACT_MT":
-                    query = query.Where(t => t.ACT_MT.ToString() == distinctValue);
+
+                case "Remark":
+                    query = query.Where(t => t.Remark == distinctValue);
                     break;
-                case "ACT_Gross_Sales":
-                    query = query.Where(t => t.ACT_Gross_Sales.ToString() == distinctValue);
+                case "Month":
+                    query = query.Where(t => t.Month == distinctValue);
+                    break;
+                case "Period":
+                    query = query.Where(t => t.Period == distinctValue);
+                    break;
+                case "Category_1_8":
+                    query = query.Where(t => t.Category_1_8 == distinctValue);
+                    break;
+                case "PLANT":
+                    query = query.Where(t => t.PLANT == distinctValue);
+                    break;
+                case "Flour_Bran_Category":
+                    query = query.Where(t => t.Flour_Bran_Category == distinctValue);
+                    break;
+                case "MPBP_Category":
+                    query = query.Where(t => t.MPBP_Category == distinctValue);
+                    break;
+
+                case "Series_Category":
+                    query = query.Where(t => t.Series_Category == distinctValue);
+                    break;
+                case "Sales_Mix":
+                    query = query.Where(t => t.Sales_Mix == distinctValue);
+                    break;
+                case "CONCATENATE1":
+                    query = query.Where(t => t.CONCATENATE1 == distinctValue);
+                    break;
+                case "Customer_by_Channel":
+                    query = query.Where(t => t.Customer_by_Channel == distinctValue);
+                    break;
+                case "Customer_by_Area":
+                    query = query.Where(t => t.Customer_by_Area == distinctValue);
+                    break;
+                case "GT_Industrial":
+                    query = query.Where(t => t.GT_Industrial == distinctValue);
+                    break;
+                case "Customer_Business_Size":
+                    query = query.Where(t => t.Customer_Business_Size == distinctValue);
+                    break;
+
+                case "Customers_Consumption":
+                    query = query.Where(t => t.Customers_Consumption == distinctValue);
+                    break;
+                case "Product_Purpose":
+                    query = query.Where(t => t.Product_Purpose == distinctValue);
+                    break;
+                case "Area_Only":
+                    query = query.Where(t => t.Area_Only == distinctValue);
+                    break;
+                case "Channel_by_Product":
+                    query = query.Where(t => t.Channel_by_Product == distinctValue);
+                    break;
+                case "Biz_Type":
+                    query = query.Where(t => t.Biz_Type == distinctValue);
+                    break;
+                case "Biz_Size":
+                    query = query.Where(t => t.Biz_Size == distinctValue);
+                    break;
+                case "IsActive":
+                    query = query.Where(t => t.IsActive.ToString() == distinctValue);
                     break;
             }
 
@@ -279,8 +341,71 @@ namespace ToolsCommercial.Controllers
                 case "Area":
                     distinctValues = query.Select(t => t.Area).Distinct().ToList();
                     break;
-            }
+                case "Dscription":
+                    distinctValues = query.Select(t => t.Dscription).Distinct().ToList();
+                    break;
+                case "Remark":
+                    distinctValues = query.Select(t => t.Remark).Distinct().ToList();
+                    break;
+                case "Period":
+                    distinctValues = query.Select(t => t.Period).Distinct().ToList();
+                    break;
+                case "Category_1_8":
+                    distinctValues = query.Select(t => t.Category_1_8).Distinct().ToList();
+                    break;
+                case "PLANT":
+                    distinctValues = query.Select(t => t.PLANT).Distinct().ToList();
+                    break;
+                case "Flour_Bran_Category":
+                    distinctValues = query.Select(t => t.Flour_Bran_Category).Distinct().ToList();
+                    break;
+                case "MPBP_Category":
+                    distinctValues = query.Select(t => t.MPBP_Category).Distinct().ToList();
+                    break;
+                case "Series_Category":
+                    distinctValues = query.Select(t => t.Series_Category).Distinct().ToList();
+                    break;
+                case "Sales_Mix":
+                    distinctValues = query.Select(t => t.Sales_Mix).Distinct().ToList();
+                    break;
+                case "CONCATENATE1":
+                    distinctValues = query.Select(t => t.CONCATENATE1).Distinct().ToList();
+                    break;
+                case "Customer_by_Channel":
+                    distinctValues = query.Select(t => t.Customer_by_Channel).Distinct().ToList();
+                    break;
+                case "Customer_by_Area":
+                    distinctValues = query.Select(t => t.Customer_by_Area).Distinct().ToList();
+                    break;
+                case "GT_Industrial":
+                    distinctValues = query.Select(t => t.GT_Industrial).Distinct().ToList();
+                    break;
+                case "Customer_Business_Size":
+                    distinctValues = query.Select(t => t.Customer_Business_Size).Distinct().ToList();
+                    break;
+                case "Customers_Consumption":
+                    distinctValues = query.Select(t => t.Customers_Consumption).Distinct().ToList();
+                    break;
+                case "Product_Purpose":
+                    distinctValues = query.Select(t => t.Product_Purpose).Distinct().ToList();
+                    break;
+                case "Area_Only":
+                    distinctValues = query.Select(t => t.Area_Only).Distinct().ToList();
+                    break;
+                case "Channel_by_Product":
+                    distinctValues = query.Select(t => t.Channel_by_Product).Distinct().ToList();
+                    break;
+                case "Biz_Type":
+                    distinctValues = query.Select(t => t.Biz_Type).Distinct().ToList();
+                    break;
+                case "Biz_Size":
+                    distinctValues = query.Select(t => t.Biz_Size).Distinct().ToList();
+                    break;
+                case "IsActive":
+                    distinctValues = query.Select(t => t.IsActive.ToString()).Distinct().ToList();
+                    break;
 
+            }
             return Json(distinctValues);
         }
 
