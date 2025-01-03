@@ -571,6 +571,32 @@ namespace ToolsCommercial.Controllers
 
 
         }
+        public IActionResult BulkUpdateIsActive([FromBody] BulkUpdateRequest request)
+        {
+            if (request == null || request.Ids == null || request.Ids.Count == 0)
+            {
+                return BadRequest("No IDs provided.");
+            }
+
+            // Assuming you have a method to get the transactions by IDs
+            var transactions = _context.Transaksis.Where(t => request.Ids.Contains(t.Id)).ToList();
+
+            foreach (var transaction in transactions)
+            {
+                transaction.IsActive = request.IsActive; // Update the IsActive status
+            }
+
+            _context.SaveChanges(); // Save changes to the database
+
+            return Ok(new { message = "Bulk update successful." });
+        }
+
+        // Define a request model for bulk update
+        public class BulkUpdateRequest
+        {
+            public List<int> Ids { get; set; }
+            public bool IsActive { get; set; }
+        }
         public IActionResult Update([FromBody] Transaksi request)
         {
 
@@ -580,7 +606,7 @@ namespace ToolsCommercial.Controllers
             }
 
             // Find the existing record in the database
-            var transaksi = _context.Transaksis.Find(request.Id);
+            var transaksi = _context.Transaksis.Find(request.Id); 
             if (transaksi == null)
             {
                 return NotFound("Record not found.");

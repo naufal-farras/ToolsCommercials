@@ -316,9 +316,18 @@
                         </div> *@
 
                     <div class="table-responsive m-2">
-                        <table id="table-monitoring" class="table table-hover table-bordered table-striped nowrap">
+                            <div class="d-flex mb-2">
+                                <select id="activeStatusDropdown" class="form-control mr-2">
+                                    <option value="">Select Active Status</option>
+                                    <option value="true">Active (Yes)</option>
+                                    <option value="false">Inactive (No)</option>
+                                </select>
+                                <button id="bulkUpdateButton" class="btn btn-warning">Update Selected</button> <!-- Bulk update button -->
+                            </div>
+                            <table id="table-monitoring" class="table table-hover table-bordered table-striped nowrap">
                             <thead>
                                 <tr>
+                                        <th><input type="checkbox" id="selectAll" /></th> <!-- Master checkbox -->
                                     <th>No</th>
                                     <th>Upload Time</th>
                                     <th>Is Active</th>
@@ -382,6 +391,7 @@
                                 <!-- Baris akan dipenuhi di sini oleh JavaScript -->
                             </tbody>
                         </table>
+
                     </div>
                     </div>
                 </div>
@@ -389,12 +399,57 @@
         </div>
     </div>
 </div>
-</div>
 
 @section Scripts {
     <script>
 
         $(document).ready(function () {
+
+            $('#selectAll').on('change', function () {
+                const isChecked = $(this).is(':checked');
+                $('#table-monitoring tbody input[type="checkbox"]').prop('checked', isChecked);
+            });
+
+            // Bulk update button click event
+            $('#bulkUpdateButton').on('click', function () {
+                const selectedIds = [];
+                $('#table-monitoring tbody input[type="checkbox"]:checked').each(function () {
+                    const row = $(this).closest('tr');
+                    const id = row.data('id'); // Get the ID of the row
+                    selectedIds.push(id);
+                });
+
+                const selectedStatus = $('#activeStatusDropdown').val(); // Get the selected status from the dropdown
+
+                if (selectedIds.length === 0) {
+                    alert('Please select at least one row to update.');
+                    return;
+                }
+
+                if (!selectedStatus) {
+                    alert('Please select an active status to apply.');
+                    return;
+                }
+
+                // Confirm action
+                const isActive = selectedStatus === 'true'; // Convert string to boolean
+
+                // Send the selected IDs and the new status to the server
+                $.ajax({
+                    url: '@Url.Action("BulkUpdateIsActive", "Home")', // Replace with your controller endpoint
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ ids: selectedIds, isActive: isActive }),
+                    success: function (response) {
+                        alert('Selected rows updated successfully!');
+                        location.reload(); // Refresh the data after update
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        alert('Error updating selected rows: ' + textStatus);
+                    }
+                });
+            });
+
             function validateForm() {
                 const header1 = $('#headerSelect1').val();
                 const distinctValue1 = $('#distinctValueSelect').val();
@@ -569,7 +624,8 @@
                 if (data && Array.isArray(data)) {
                     data.forEach((item, index) => {
                         const activeClass = item.isActive ? 'active' : 'inactive';
-                        const row = ` <tr data-id="${item.id}"> <!-- Store the ID for updates -->
+                        const row = `  <tr data-id="${item.id}"> <!-- Store the ID for updates -->
+                            <td><input type="checkbox" class="row-checkbox" /></td> 
                                                              <td>${index + 1}</td>
                                                              <td>${formatDate(item.uploadTime)}</td>
                                                              <td> <select  class="form-control is-active-dropdown" data-id="${item.id}">
