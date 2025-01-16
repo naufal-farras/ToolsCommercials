@@ -882,7 +882,18 @@ namespace ToolsCommercial.Controllers
             return Ok(distinctProductPurposes);
         }
         #endregion
+        [HttpPost]
+        public async Task<IActionResult> DeleteAllData()
+        {
+            //// Delete all records from the Transaksis table  
+            //_context.Transaksis.RemoveRange(_context.Transaksis);
+            //await _context.SaveChangesAsync();
 
+            // Reseed the identity column  
+            await _context.Database.ExecuteSqlRawAsync("DELETE FROM [Transaksis] DBCC CHECKIDENT ('[Transaksis]', RESEED, 0)");
+
+            return Ok(); // Return a success response  
+        }
 
         public ActionResult<IEnumerable<Transaksi>> GetAll()
         {

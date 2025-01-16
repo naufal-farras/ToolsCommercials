@@ -321,14 +321,20 @@
                         </div> *@
 
                         <div class="table-responsive m-2">
-                            <div class="d-flex mb-2">
+                           @*  <div class="d-flex mb-2">
                                 <select id="activeStatusDropdown" class="form-control mr-2">
                                     <option value="">Select Active Status</option>
                                     <option value="true">Active (Yes)</option>
                                     <option value="false">Inactive (No)</option>
-                                </select>
-                                <button id="bulkUpdateButton" class="btn btn-warning">Update Selected</button> <!-- Bulk update button -->
+                                </select> 
+                                  <button id="bulkUpdateButton" class="btn btn-warning">Update Selected</button> <!-- Bulk update button -->  
+                               
+                               
+                            </div> *@
+                            <div class="d-flex justify-content-end mb-2">
+                                <button id="DeleteAllData" class="btn btn-danger">Delete All Data</button>
                             </div>
+
                             <table id="table-monitoring" class="table table-hover table-bordered table-striped nowrap">
                                 <thead>
                                     <tr>
@@ -407,8 +413,42 @@
 
 @section Scripts {
     <script>
-
         $(document).ready(function () {
+            $('#DeleteAllData').on('click', function () {
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "This action cannot be undone.",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Yes, delete it!',
+                    cancelButtonText: 'Cancel'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: '@Url.Action("DeleteAllData", "Home")', // Replace with your actual controller name
+                            type: 'POST',
+                            success: function (response) {
+                                Swal.fire(
+                                    'Deleted!',
+                                    'All data has been deleted successfully.',
+                                    'success'
+                                );
+                                // Optionally, you can refresh the page or update the UI
+                                // location.reload(); // Refresh the page
+                            },
+                            error: function (xhr, status, error) {
+                                Swal.fire(
+                                    'Error!',
+                                    'An error occurred while deleting data: ' + error,
+                                    'error'
+                                );
+                            }
+                        });
+                    }
+                });
+            });
 
             $('#selectAll').on('change', function () {
                 const isChecked = $(this).is(':checked');
