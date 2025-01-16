@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ToolsCommercial.Data;
 
@@ -11,9 +12,10 @@ using ToolsCommercial.Data;
 namespace ToolsCommercial.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250115083243_updatetostring")]
+    partial class updatetostring
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -228,49 +230,38 @@ namespace ToolsCommercial.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<decimal?>("ACT_CM_Excl")
-                        .HasPrecision(18, 3)
-                        .HasColumnType("decimal(18,3)");
+                    b.Property<string>("ACT_CM_Excl")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal?>("ACT_DM_Utility_Cost")
-                        .HasPrecision(18, 3)
-                        .HasColumnType("decimal(18,3)");
+                    b.Property<string>("ACT_DM_Utility_Cost")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal?>("ACT_FX")
-                        .HasPrecision(18, 3)
-                        .HasColumnType("decimal(18,3)");
+                    b.Property<string>("ACT_FX")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal?>("ACT_Freight_Export")
-                        .HasPrecision(18, 3)
-                        .HasColumnType("decimal(18,3)");
+                    b.Property<string>("ACT_Freight_Export")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal?>("ACT_Freight_Local")
-                        .HasPrecision(18, 3)
-                        .HasColumnType("decimal(18,3)");
+                    b.Property<string>("ACT_Freight_Local")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal?>("ACT_Gross_Sales")
-                        .HasPrecision(18, 3)
-                        .HasColumnType("decimal(18,3)");
+                    b.Property<string>("ACT_Gross_Sales")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal?>("ACT_Interest")
-                        .HasPrecision(18, 3)
-                        .HasColumnType("decimal(18,3)");
+                    b.Property<string>("ACT_Interest")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal?>("ACT_Loco_Sales")
-                        .HasPrecision(18, 3)
-                        .HasColumnType("decimal(18,3)");
+                    b.Property<string>("ACT_Loco_Sales")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal?>("ACT_MT")
-                        .HasPrecision(18, 3)
-                        .HasColumnType("decimal(18,3)");
+                    b.Property<string>("ACT_MT")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal?>("ACT_Whs_Trf")
-                        .HasPrecision(18, 3)
-                        .HasColumnType("decimal(18,3)");
+                    b.Property<string>("ACT_Whs_Trf")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal?>("ACTual_CM_Incl")
-                        .HasPrecision(18, 3)
-                        .HasColumnType("decimal(18,3)");
+                    b.Property<string>("ACTual_CM_Incl")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Area")
                         .HasColumnType("nvarchar(max)");
@@ -278,33 +269,26 @@ namespace ToolsCommercial.Migrations
                     b.Property<string>("Area_Only")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal?>("BGT_CM")
-                        .HasPrecision(18, 3)
-                        .HasColumnType("decimal(18,3)");
+                    b.Property<string>("BGT_CM")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal?>("BGT_CM_Excl")
-                        .HasPrecision(18, 3)
-                        .HasColumnType("decimal(18,3)");
+                    b.Property<string>("BGT_CM_Excl")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal?>("BGT_FX")
-                        .HasPrecision(18, 3)
-                        .HasColumnType("decimal(18,3)");
+                    b.Property<string>("BGT_FX")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal?>("BGT_Interest")
-                        .HasPrecision(18, 3)
-                        .HasColumnType("decimal(18,3)");
+                    b.Property<string>("BGT_Interest")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal?>("BGT_MT")
-                        .HasPrecision(18, 3)
-                        .HasColumnType("decimal(18,3)");
+                    b.Property<string>("BGT_MT")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal?>("BGT_Sales")
-                        .HasPrecision(18, 3)
-                        .HasColumnType("decimal(18,3)");
+                    b.Property<string>("BGT_Sales")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal?>("BGT_VC")
-                        .HasPrecision(18, 3)
-                        .HasColumnType("decimal(18,3)");
+                    b.Property<string>("BGT_VC")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Biz_Size")
                         .HasColumnType("nvarchar(max)");
@@ -345,21 +329,17 @@ namespace ToolsCommercial.Migrations
                     b.Property<string>("Dscription")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal?>("FCT_CM")
-                        .HasPrecision(18, 3)
-                        .HasColumnType("decimal(18,3)");
+                    b.Property<string>("FCT_CM")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal?>("FCT_MT")
-                        .HasPrecision(18, 3)
-                        .HasColumnType("decimal(18,3)");
+                    b.Property<string>("FCT_MT")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal?>("FCT_Sales")
-                        .HasPrecision(18, 3)
-                        .HasColumnType("decimal(18,3)");
+                    b.Property<string>("FCT_Sales")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal?>("FCT_VC")
-                        .HasPrecision(18, 3)
-                        .HasColumnType("decimal(18,3)");
+                    b.Property<string>("FCT_VC")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Flour_Bran_Category")
                         .HasColumnType("nvarchar(max)");

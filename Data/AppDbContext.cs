@@ -14,34 +14,77 @@ namespace ToolsCommercial.Data
         public string? Sales_Person { get; set; }
         public string? Dscription { get; set; }
         public string? Product { get; set; }
-        public float? ACT_MT { get; set; }
-        public float? ACT_Gross_Sales { get; set; }
-        public float? ACT_Freight_Local { get; set; }
-        public float? ACT_Whs_Trf { get; set; }
-        public float? ACT_Freight_Export { get; set; }
-        public float? ACT_Loco_Sales { get; set; }
-        public float? ACT_DM_Utility_Cost { get; set; }
-        public float? ACT_CM_Excl { get; set; }
-        public float? ACT_FX { get; set; }
-        public float? ACT_Interest { get; set; }
-        public float? ACTual_CM_Incl { get; set; }
-        public float? OPEX { get; set; }
+        
+        [Precision(18, 3)]
+        public decimal? ACT_MT { get; set; }
+        [Precision(18, 3)]
+        public decimal? ACT_Gross_Sales { get; set; }
+
+        [Precision(18, 3)]
+        public decimal? ACT_Freight_Local { get; set; }
+
+        [Precision(18, 3)]
+        public decimal? ACT_Whs_Trf { get; set; }
+
+        [Precision(18, 3)]
+        public decimal? ACT_Freight_Export { get; set; }
+
+        [Precision(18, 3)]
+        public decimal? ACT_Loco_Sales { get; set; }
+
+        [Precision(18, 3)]
+        public decimal? ACT_DM_Utility_Cost { get; set; }
+
+        [Precision(18, 3)]
+        public decimal? ACT_CM_Excl { get; set; }
+
+        [Precision(18, 3)]
+        public decimal? ACT_FX { get; set; }
+
+        [Precision(18, 3)]
+        public decimal? ACT_Interest { get; set; }
+
+        [Precision(18, 3)]
+        public decimal? ACTual_CM_Incl { get; set; }
+        public string? OPEX { get; set; }
         public string? Remark { get; set; }
         public string? Month { get; set; }
         public string? Period { get; set; }
         public int? Year { get; set; }
-        public float? Capacity { get; set; }
-        public float? BGT_MT { get; set; }
-        public float? BGT_Sales { get; set; }
-        public float? BGT_VC { get; set; }
-        public float? BGT_CM { get; set; }
-        public float? BGT_FX { get; set; }
-        public float? BGT_Interest { get; set; }
-        public float? BGT_CM_Excl { get; set; }
-        public float? FCT_MT { get; set; }
-        public float? FCT_Sales { get; set; }
-        public float? FCT_VC { get; set; }
-        public float? FCT_CM { get; set; }
+        public string? Capacity { get; set; }
+
+        [Precision(18, 3)]
+        public decimal? BGT_MT { get; set; }
+
+        [Precision(18, 3)]
+        public decimal? BGT_Sales { get; set; }
+
+        [Precision(18, 3)]
+        public decimal? BGT_VC { get; set; }
+
+        [Precision(18, 3)]
+        public decimal? BGT_CM { get; set; }
+
+        [Precision(18, 3)]
+        public decimal? BGT_FX { get; set; }
+
+        [Precision(18, 3)]
+        public decimal? BGT_Interest { get; set; }
+
+        [Precision(18, 3)]
+        public decimal? BGT_CM_Excl { get; set; }
+
+        [Precision(18, 3)]
+        public decimal? FCT_MT { get; set; }
+
+        [Precision(18, 3)]
+        public decimal? FCT_Sales { get; set; }
+
+        [Precision(18, 3)]
+        public decimal? FCT_VC { get; set; }
+
+        [Precision(18, 3)]
+        public decimal? FCT_CM { get; set; }
         public string? PLANT { get; set; }
         public string? UOM { get; set; }
         public string? Category_1_8 { get; set; }

@@ -34,6 +34,7 @@
     .input-group {
         width: 100%; /* Ensure the input group takes full width */
     }
+
     #t-inventory {
         overflow-x: auto;
         border: 1px solid #dee2e6;
@@ -79,7 +80,7 @@
                             <div class="col-12">
                                 <div class="d-flex align-items-center">
                                     <input type="file" class="form-control" id="fileInput" accept=".xlsx" />
-                                    <button class="btn btn-success ml-2" id="uploadButton" >Upload</button>
+                                    <button class="btn btn-success ml-2" id="uploadButton">Upload</button>
                                 </div>
                                 <br />
                                 <div class="progress mt-3" style="display: none;">
@@ -110,215 +111,218 @@
                             <div class="col-12">
                                 <div class="d-flex flex-wrap mb-3 p-2">
                                     <div class="d-flex flex-grow-1 flex-wrap">
+                                        <select id="filterRemark" class="form-control form-control-sm select2 filter-dropdown  mr-2" style="width: 100%; margin-bottom:20%;">
+                                            <option value="">Select Remark</option>
+                                        </select>
+                                        <select id="filterPeriod" class="form-control form-control-sm select2 filter-dropdown  mr-2" style="width: 100%; margin-bottom:20%;">
+                                            <option value="">Select Period</option>
+                                        </select>
+                                        <select id="filterPLANT" class="form-control form-control-sm select2 filter-dropdown  mr-2" style="width: 100%; margin-bottom:20%;">
+                                            <option value="">Select PLANT</option>
+                                        </select>
+                                        <select id="filterCategory1_8" class="form-control form-control-sm select2 filter-dropdown  mr-2" style="width: 100%; margin-bottom:20%;">
+                                            <option value="">Select Category 1-8</option>
+                                        </select>
 
-                                        <select id="filterArea" class="form-control form-control-sm select2 filter-dropdown  mr-2"  style="width: 100%; margin-bottom:20%;" >
-                                        <option value="">Select Area</option>
-                                    </select>
-                                        <select id="filterCustomerName" class="form-control form-control-sm select2 filter-dropdown  mr-2" style="width: 100%; margin-bottom:20%;">
-                                        <option value="">Select Customer Name</option>
-                                    </select>
+                                        <select id="filterArea" class="form-control form-control-sm select2 filter-dropdown  mr-2" style="width: 100%; margin-bottom:20%;">
+                                            <option value="">Select Area</option>
+                                        </select>
+                                        <select id="filterSeriesCategory" class="form-control form-control-sm select2 filter-dropdown  mr-2" style="width: 100%; margin-bottom:20%;">
+                                            <option value="">Select Series Category</option>
+                                        </select>
                                         <select id="filterProduct" class="form-control form-control-sm select2 filter-dropdown  mr-2" style="width: 100%; margin-bottom:20%;">
-                                        <option value="">Select Product</option>
-                                    </select>
-                                    <select id="filterRemark" class="form-control form-control-sm select2 filter-dropdown  mr-2" style="width: 100%; margin-bottom:20%;">
-                                        <option value="">Select Remark</option>
-                                    </select>
-                                    <select id="filterMonth" class="form-control form-control-sm select2 filter-dropdown  mr-2" style="width: 100%; margin-bottom:20%;">
-                                        <option value="">Select Month</option>
-                                    </select>
-                                    <select id="filterPeriod" class="form-control form-control-sm select2 filter-dropdown  mr-2" style="width: 100%; margin-bottom:20%;">
-                                        <option value="">Select Period</option>
-                                    </select>
-                                    <select id="filterYear" class="form-control form-control-sm select2 filter-dropdown  mr-2" style="width: 100%; margin-bottom:20%;">
-                                        <option value="">Select Year</option>
-                                    </select>
-                                    <select id="filterPLANT" class="form-control form-control-sm select2 filter-dropdown  mr-2" style="width: 100%; margin-bottom:20%;">
-                                        <option value="">Select PLANT</option>
-                                    </select>
-                                    <select id="filterCategory1_8" class="form-control form-control-sm select2 filter-dropdown  mr-2" style="width: 100%; margin-bottom:20%;">
-                                        <option value="">Select Category 1-8</option>
-                                    </select>
-                                    <select id="filterFlourBranCategory" class="form-control form-control-sm select2 filter-dropdown  mr-2" style="width: 100%; margin-bottom:20%;">
-                                        <option value="">Select Flour Bran Category</option>
-                                    </select>
-                                    <select id="filterMPBPCategory" class="form-control form-control-sm select2 filter-dropdown  mr-2" style="width: 100%; margin-bottom:20%;">
-                                        <option value="">Select MPBP Category</option>
-                                    </select>
-                                    <select id="filterSeriesCategory" class="form-control form-control-sm select2 filter-dropdown  mr-2" style="width: 100%; margin-bottom:20%;">
-                                        <option value="">Select Series Category</option>
-                                    </select>
-                                    <select id="filterCustomerByChannel" class="form-control form-control-sm select2 filter-dropdown  mr-2" style="width: 100%; margin-bottom:20%;">
-                                        <option value="">Select Customer by Channel</option>
-                                    </select>
-                                    <select id="filterCustomerByArea" class="form-control form-control-sm select2 filter-dropdown  mr-2" style="width: 100%; margin-bottom:20%;">
-                                        <option value="">Select Customer by Area</option>
-                                    </select>
-                                    <select id="filterGTIndustrial" class="form-control form-control-sm select2 filter-dropdown  mr-2" style="width: 100%; margin-bottom:20%;">
-                                        <option value="">Select GT Industrial</option>
-                                    </select>
-                                    <select id="filterProductPurpose" class="form-control form-control-sm select2 filter-dropdown  mr-2" style="width: 100%; margin-bottom:20%;">
-                                        <option value="">Select Product Purpose</option>
-                                    </select>
-                                     
-                                </div>
-                                <div class="ml-auto">
-                                    <!-- This div pushes the button to the right -->
-                                    <button id="filterButton" class="btn btn-primary mt-2 mr-2" style="width: 100%; margin-bottom:20%;">Filter</button>
+                                            <option value="">Select Product</option>
+                                        </select>
+
+                                        <select id="filterCustomerName" class="form-control form-control-sm select2 filter-dropdown  mr-2" style="width: 100%; margin-bottom:20%;">
+                                            <option value="">Select Customer Name</option>
+                                        </select>
+                                        <select id="filterGTIndustrial" class="form-control form-control-sm select2 filter-dropdown  mr-2" style="width: 100%; margin-bottom:20%;">
+                                            <option value="">Select GT Industrial</option>
+                                        </select>
+
+
+                                        <select id="filterMonth" class="form-control form-control-sm select2 filter-dropdown  mr-2" style="width: 100%; margin-bottom:20%;">
+                                            <option value="">Select Month</option>
+                                        </select>
+
+                                        <select id="filterYear" class="form-control form-control-sm select2 filter-dropdown  mr-2" style="width: 100%; margin-bottom:20%;">
+                                            <option value="">Select Year</option>
+                                        </select>
+
+                                        <select id="filterFlourBranCategory" class="form-control form-control-sm select2 filter-dropdown  mr-2" style="width: 100%; margin-bottom:20%;">
+                                            <option value="">Select Flour Bran Category</option>
+                                        </select>
+                                        <select id="filterMPBPCategory" class="form-control form-control-sm select2 filter-dropdown  mr-2" style="width: 100%; margin-bottom:20%;">
+                                            <option value="">Select MPBP Category</option>
+                                        </select>
+
+                                        <select id="filterCustomerByChannel" class="form-control form-control-sm select2 filter-dropdown  mr-2" style="width: 100%; margin-bottom:20%;">
+                                            <option value="">Select Customer by Channel</option>
+                                        </select>
+                                        <select id="filterCustomerByArea" class="form-control form-control-sm select2 filter-dropdown  mr-2" style="width: 100%; margin-bottom:20%;">
+                                            <option value="">Select Customer by Area</option>
+                                        </select>
+
+                                    </div>
+                                    <div class="ml-auto">
+                                        <!-- This div pushes the button to the right -->
+                                        <button id="filterButton" class="btn btn-primary mt-2 mr-2" style="width: 100%; margin-bottom:20%;">Filter</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         @* <h2>Replace Data</h2> *@
-                     @*    <div class="row">
-                            <div class="col-md-3">
-                                <label for="headerSelect1">Select Header (WHERE)</label>
-                                <select id="headerSelect1" class="form-control select2" select2>
-                                    <option value="">Select Header</option>
-                                    <option value="Area">Area</option>
-                                    <option value="Location">Location</option>
-                                    <option value="Customer_No">Customer No</option>
-                                    <option value="Customer_Name">Customer Name</option>
-                                    <option value="Sales_Person">Sales Person</option>
-                                    <option value="Dscription">Dscription</option>
-                                    <option value="Product">Product</option> *@
-                                   @*  <option value="ACT_MT">ACT MT</option>
-                                    <option value="ACT_Gross_Sales">ACT Gross Sales</option>
-                                    <option value="ACT_Freight_Local">ACT_Freight_Local</option>
-                                    <option value="ACT_Whs_Trf">ACT_Whs_Trf</option>
-                                    <option value="ACT_Freight_Export">ACT_Freight_Export</option>
-                                    <option value="ACT_Loco_Sales">ACT_Loco_Sales</option>
-                                    <option value="ACT_DM_Utility_Cost">ACT_DM_Utility_Cost</option>
-                                    <option value="ACT_CM_Excl">ACT_CM_Excl</option>
-                                    <option value="ACT_FX">ACT_FX</option>
-                                    <option value="ACT_Interest">ACT_Interest</option>
-                                    <option value="ACTual_CM_Incl">ACTual_CM_Incl</option>
-                                    <option value="OPEX">OPEX</option> *@
-                                   @*  <option value="Remark">Remark</option>
-                                    <option value="Month">Month</option>
-                                    <option value="Period">Period</option>
-                                    <option value="Year">Year</option> *@
-                                  @*   <option value="Capacity">Capacity</option>
-                                    <option value="BGT_MT">BGT_MT</option>
-                                    <option value="BGT_Sales">BGT_Sales</option>
-                                    <option value="BGT_VC">BGT_VC</option>
-                                    <option value="BGT_CM">BGT_CM</option>
-                                    <option value="BGT_FX">BGT_FX</option>
-                                    <option value="BGT_Interest">BGT_Interest</option>
-                                    <option value="BGT_CM_Excl">BGT_CM_Excl</option>
-                                    <option value="FCT_MT">FCT_MT</option>
-                                    <option value="FCT_Sales">FCT_Sales</option>
-                                    <option value="FCT_VC">FCT_VC</option>
-                                    <option value="FCT_CM">FCT_CM</option> *@
-                                    @* <option value="PLANT">PLANT</option> *@
-                                    @* <option value="UOM">UOM</option> *@
-                                   @*  <option value="Category_1_8">Category_1_8</option>
-                                    <option value="Flour_Bran_Category">Flour_Bran_Category</option>
-                                    <option value="MPBP_Category">MPBP_Category</option>
-                                    <option value="Series_Category">Series_Category</option>
-                                    <option value="Sales_Mix">Sales_Mix</option>
-                                    <option value="CONCATENATE1">CONCATENATE1</option>
-                                    <option value="Customer_by_Channel">Customer_by_Channel</option>
-                                    <option value="Customer_by_Area">Customer_by_Area</option>
-                                    <option value="GT_Industrial">GT_Industrial</option>
-                                    <option value="Customer_Business_Size">Customer Business Size</option>
-                                    <option value="Customers_Consumption">Customers Consumption</option>
-                                    <option value="Product_Purpose">Product Purpose</option>
-                                    <option value="Area_Only">Area Only</option>
-                                    <option value="Channel_by_Product">Channel by Product</option>
-                                    <option value="Biz_Type">Biz Type</option>
-                                    <option value="Biz_Size">Biz Size</option>
-                                    <option value="IsActive">IsActive</option>
-                                </select>
-                            </div> *@
-                          @*   <div class="col-md-3">
-                                <label for="distinctValueSelect">Select Value Header   (Value Where)</label>
-                                <select id="distinctValueSelect" class="form-control select2">
-                                    <option value="">Select Value</option>
-                                    <!-- Distinct values will be populated here -->
-                                </select>
-                            </div>
-                            <div class="col-md-3">
-                                <label for="headerSelect2">Select Header 2 (Kolom Update)</label>
-                                <select id="headerSelect2" class="form-control select2">
-                                    <option value="">Select Header</option>
-                                    <option value="Area">Area</option>
-                                    <option value="Location">Location</option>
-                                    <option value="Customer_No">Customer No</option>
-                                    <option value="Customer_Name">Customer Name</option>
-                                    <option value="Sales_Person">Sales Person</option>
-                                    <option value="Dscription">Dscription</option>
-                                    <option value="Product">Product</option>
-                                    @*  <option value="ACT_MT">ACT MT</option>
-                                    <option value="ACT_Gross_Sales">ACT Gross Sales</option>
-                                    <option value="ACT_Freight_Local">ACT_Freight_Local</option>
-                                    <option value="ACT_Whs_Trf">ACT_Whs_Trf</option>
-                                    <option value="ACT_Freight_Export">ACT_Freight_Export</option>
-                                    <option value="ACT_Loco_Sales">ACT_Loco_Sales</option>
-                                    <option value="ACT_DM_Utility_Cost">ACT_DM_Utility_Cost</option>
-                                    <option value="ACT_CM_Excl">ACT_CM_Excl</option>
-                                    <option value="ACT_FX">ACT_FX</option>
-                                    <option value="ACT_Interest">ACT_Interest</option>
-                                    <option value="ACTual_CM_Incl">ACTual_CM_Incl</option>
-                                    <option value="OPEX">OPEX</option> *@
-                                @*     <option value="Remark">Remark</option>
-                                    <option value="Month">Month</option>
-                                    <option value="Period">Period</option>
-                                    <option value="Year">Year</option> *@
-                                    @*   <option value="Capacity">Capacity</option>
-                                    <option value="BGT_MT">BGT_MT</option>
-                                    <option value="BGT_Sales">BGT_Sales</option>
-                                    <option value="BGT_VC">BGT_VC</option>
-                                    <option value="BGT_CM">BGT_CM</option>
-                                    <option value="BGT_FX">BGT_FX</option>
-                                    <option value="BGT_Interest">BGT_Interest</option>
-                                    <option value="BGT_CM_Excl">BGT_CM_Excl</option>
-                                    <option value="FCT_MT">FCT_MT</option>
-                                    <option value="FCT_Sales">FCT_Sales</option>
-                                    <option value="FCT_VC">FCT_VC</option>
-                                    <option value="FCT_CM">FCT_CM</option> *@
-                                    @* <option value="PLANT">PLANT</option> *@
-                                    @* <option value="UOM">UOM</option> *@
-                                  @*   <option value="Category_1_8">Category_1_8</option>
-                                    <option value="Flour_Bran_Category">Flour_Bran_Category</option>
-                                    <option value="MPBP_Category">MPBP_Category</option>
-                                    <option value="Series_Category">Series_Category</option>
-                                    <option value="Sales_Mix">Sales_Mix</option>
-                                    <option value="CONCATENATE1">CONCATENATE1</option>
-                                    <option value="Customer_by_Channel">Customer_by_Channel</option>
-                                    <option value="Customer_by_Area">Customer_by_Area</option>
-                                    <option value="GT_Industrial">GT_Industrial</option>
-                                    <option value="Customer_Business_Size">Customer Business Size</option>
-                                    <option value="Customers_Consumption">Customers Consumption</option>
-                                    <option value="Product_Purpose">Product Purpose</option>
-                                    <option value="Area_Only">Area Only</option>
-                                    <option value="Channel_by_Product">Channel by Product</option>
-                                    <option value="Biz_Type">Biz Type</option>
-                                    <option value="Biz_Size">Biz Size</option>
-                                    <option value="IsActive">IsActive</option> *@
-                               @*  </select>
-                            </div>
-                            <div class="col-md-3">
-                                <label for="distinctValueSelect2"> Select Value Header 2 (Value Ganti OLD)</label>
-                                <select id="distinctValueSelect2" class="form-control select2">
-                                    <option value="">Select Value</option>
-                                    <!-- Distinct values will be populated here -->
-                                </select>
-                            </div>
+                        @*    <div class="row">
+                        <div class="col-md-3">
+                        <label for="headerSelect1">Select Header (WHERE)</label>
+                        <select id="headerSelect1" class="form-control select2" select2>
+                        <option value="">Select Header</option>
+                        <option value="Area">Area</option>
+                        <option value="Location">Location</option>
+                        <option value="Customer_No">Customer No</option>
+                        <option value="Customer_Name">Customer Name</option>
+                        <option value="Sales_Person">Sales Person</option>
+                        <option value="Dscription">Dscription</option>
+                        <option value="Product">Product</option> *@
+                        @*  <option value="ACT_MT">ACT MT</option>
+                        <option value="ACT_Gross_Sales">ACT Gross Sales</option>
+                        <option value="ACT_Freight_Local">ACT_Freight_Local</option>
+                        <option value="ACT_Whs_Trf">ACT_Whs_Trf</option>
+                        <option value="ACT_Freight_Export">ACT_Freight_Export</option>
+                        <option value="ACT_Loco_Sales">ACT_Loco_Sales</option>
+                        <option value="ACT_DM_Utility_Cost">ACT_DM_Utility_Cost</option>
+                        <option value="ACT_CM_Excl">ACT_CM_Excl</option>
+                        <option value="ACT_FX">ACT_FX</option>
+                        <option value="ACT_Interest">ACT_Interest</option>
+                        <option value="ACTual_CM_Incl">ACTual_CM_Incl</option>
+                        <option value="OPEX">OPEX</option> *@
+                        @*  <option value="Remark">Remark</option>
+                        <option value="Month">Month</option>
+                        <option value="Period">Period</option>
+                        <option value="Year">Year</option> *@
+                        @*   <option value="Capacity">Capacity</option>
+                        <option value="BGT_MT">BGT_MT</option>
+                        <option value="BGT_Sales">BGT_Sales</option>
+                        <option value="BGT_VC">BGT_VC</option>
+                        <option value="BGT_CM">BGT_CM</option>
+                        <option value="BGT_FX">BGT_FX</option>
+                        <option value="BGT_Interest">BGT_Interest</option>
+                        <option value="BGT_CM_Excl">BGT_CM_Excl</option>
+                        <option value="FCT_MT">FCT_MT</option>
+                        <option value="FCT_Sales">FCT_Sales</option>
+                        <option value="FCT_VC">FCT_VC</option>
+                        <option value="FCT_CM">FCT_CM</option> *@
+                        @* <option value="PLANT">PLANT</option> *@
+                        @* <option value="UOM">UOM</option> *@
+                        @*  <option value="Category_1_8">Category_1_8</option>
+                        <option value="Flour_Bran_Category">Flour_Bran_Category</option>
+                        <option value="MPBP_Category">MPBP_Category</option>
+                        <option value="Series_Category">Series_Category</option>
+                        <option value="Sales_Mix">Sales_Mix</option>
+                        <option value="CONCATENATE1">CONCATENATE1</option>
+                        <option value="Customer_by_Channel">Customer_by_Channel</option>
+                        <option value="Customer_by_Area">Customer_by_Area</option>
+                        <option value="GT_Industrial">GT_Industrial</option>
+                        <option value="Customer_Business_Size">Customer Business Size</option>
+                        <option value="Customers_Consumption">Customers Consumption</option>
+                        <option value="Product_Purpose">Product Purpose</option>
+                        <option value="Area_Only">Area Only</option>
+                        <option value="Channel_by_Product">Channel by Product</option>
+                        <option value="Biz_Type">Biz Type</option>
+                        <option value="Biz_Size">Biz Size</option>
+                        <option value="IsActive">IsActive</option>
+                        </select>
+                        </div> *@
+                        @*   <div class="col-md-3">
+                        <label for="distinctValueSelect">Select Value Header   (Value Where)</label>
+                        <select id="distinctValueSelect" class="form-control select2">
+                        <option value="">Select Value</option>
+                        <!-- Distinct values will be populated here -->
+                        </select>
                         </div>
                         <div class="col-md-3">
-                            <label for="inputText">Input New Value </label>
-                            <div class="input-group">
-                                <input type="text" id="inputText" class="form-control" placeholder="Enter value" />
-                                <div class="input-group-append">
-                                    <button id="submitButton" class="btn btn-primary disabled ml-2">Replace All Data</button>
-                                </div>
-                            </div>
+                        <label for="headerSelect2">Select Header 2 (Kolom Update)</label>
+                        <select id="headerSelect2" class="form-control select2">
+                        <option value="">Select Header</option>
+                        <option value="Area">Area</option>
+                        <option value="Location">Location</option>
+                        <option value="Customer_No">Customer No</option>
+                        <option value="Customer_Name">Customer Name</option>
+                        <option value="Sales_Person">Sales Person</option>
+                        <option value="Dscription">Dscription</option>
+                        <option value="Product">Product</option>
+                        @*  <option value="ACT_MT">ACT MT</option>
+                        <option value="ACT_Gross_Sales">ACT Gross Sales</option>
+                        <option value="ACT_Freight_Local">ACT_Freight_Local</option>
+                        <option value="ACT_Whs_Trf">ACT_Whs_Trf</option>
+                        <option value="ACT_Freight_Export">ACT_Freight_Export</option>
+                        <option value="ACT_Loco_Sales">ACT_Loco_Sales</option>
+                        <option value="ACT_DM_Utility_Cost">ACT_DM_Utility_Cost</option>
+                        <option value="ACT_CM_Excl">ACT_CM_Excl</option>
+                        <option value="ACT_FX">ACT_FX</option>
+                        <option value="ACT_Interest">ACT_Interest</option>
+                        <option value="ACTual_CM_Incl">ACTual_CM_Incl</option>
+                        <option value="OPEX">OPEX</option> *@
+                        @*     <option value="Remark">Remark</option>
+                        <option value="Month">Month</option>
+                        <option value="Period">Period</option>
+                        <option value="Year">Year</option> *@
+                        @*   <option value="Capacity">Capacity</option>
+                        <option value="BGT_MT">BGT_MT</option>
+                        <option value="BGT_Sales">BGT_Sales</option>
+                        <option value="BGT_VC">BGT_VC</option>
+                        <option value="BGT_CM">BGT_CM</option>
+                        <option value="BGT_FX">BGT_FX</option>
+                        <option value="BGT_Interest">BGT_Interest</option>
+                        <option value="BGT_CM_Excl">BGT_CM_Excl</option>
+                        <option value="FCT_MT">FCT_MT</option>
+                        <option value="FCT_Sales">FCT_Sales</option>
+                        <option value="FCT_VC">FCT_VC</option>
+                        <option value="FCT_CM">FCT_CM</option> *@
+                        @* <option value="PLANT">PLANT</option> *@
+                        @* <option value="UOM">UOM</option> *@
+                        @*   <option value="Category_1_8">Category_1_8</option>
+                        <option value="Flour_Bran_Category">Flour_Bran_Category</option>
+                        <option value="MPBP_Category">MPBP_Category</option>
+                        <option value="Series_Category">Series_Category</option>
+                        <option value="Sales_Mix">Sales_Mix</option>
+                        <option value="CONCATENATE1">CONCATENATE1</option>
+                        <option value="Customer_by_Channel">Customer_by_Channel</option>
+                        <option value="Customer_by_Area">Customer_by_Area</option>
+                        <option value="GT_Industrial">GT_Industrial</option>
+                        <option value="Customer_Business_Size">Customer Business Size</option>
+                        <option value="Customers_Consumption">Customers Consumption</option>
+                        <option value="Product_Purpose">Product Purpose</option>
+                        <option value="Area_Only">Area Only</option>
+                        <option value="Channel_by_Product">Channel by Product</option>
+                        <option value="Biz_Type">Biz Type</option>
+                        <option value="Biz_Size">Biz Size</option>
+                        <option value="IsActive">IsActive</option> *@
+                        @*  </select>
+                        </div>
+                        <div class="col-md-3">
+                        <label for="distinctValueSelect2"> Select Value Header 2 (Value Ganti OLD)</label>
+                        <select id="distinctValueSelect2" class="form-control select2">
+                        <option value="">Select Value</option>
+                        <!-- Distinct values will be populated here -->
+                        </select>
+                        </div>
+                        </div>
+                        <div class="col-md-3">
+                        <label for="inputText">Input New Value </label>
+                        <div class="input-group">
+                        <input type="text" id="inputText" class="form-control" placeholder="Enter value" />
+                        <div class="input-group-append">
+                        <button id="submitButton" class="btn btn-primary disabled ml-2">Replace All Data</button>
+                        </div>
+                        </div>
                         </div> *@
 
-                    <div class="table-responsive m-2">
+                        <div class="table-responsive m-2">
                             <div class="d-flex mb-2">
-                                <select id="activeStatusDropdown" class="form-control mr-2" >
+                                <select id="activeStatusDropdown" class="form-control mr-2">
                                     <option value="">Select Active Status</option>
                                     <option value="true">Active (Yes)</option>
                                     <option value="false">Inactive (No)</option>
@@ -326,74 +330,74 @@
                                 <button id="bulkUpdateButton" class="btn btn-warning">Update Selected</button> <!-- Bulk update button -->
                             </div>
                             <table id="table-monitoring" class="table table-hover table-bordered table-striped nowrap">
-                            <thead>
-                                <tr>
+                                <thead>
+                                    <tr>
                                         <th><input type="checkbox" id="selectAll" /></th> <!-- Master checkbox -->
-                                    <th>No</th>
-                                    <th>Upload Time</th>
-                                    <th>Is Active</th>
-                                    <th hidden>Action</th>
-                                    <th>Area</th>
-                                    <th>Location</th>
-                                    <th>Customer No</th>
-                                    <th>Customer Name</th>
-                                    <th>Sales Person</th>
-                                    <th>Description</th>
-                                    <th>Product</th>
-                                    <th>ACT - MT</th>
-                                    <th>ACT - Gross Sales</th>
-                                    <th>ACT - Freight Local</th>
-                                    <th>ACT - Whs Trf</th>
-                                    <th>ACT - Freight Export</th>
-                                    <th>ACT - Loco Sales</th>
-                                    <th>ACT - DM Utility Cost</th>
-                                    <th>ACT - CM Excl</th>
-                                    <th>ACT - FX</th>
-                                    <th>ACT - Interest</th>
-                                    <th>ACTual CM Incl</th>
-                                    <th>OPEX</th>
-                                    <th>Remark</th>
-                                    <th>Month</th>
-                                    <th>Period</th>
-                                    <th>Year</th>
-                                    <th>Capacity</th>
-                                    <th>BGT - MT</th>
-                                    <th>BGT - Sales</th>
-                                    <th>BGT - VC</th>
-                                    <th>BGT - CM</th>
-                                    <th>BGT - FX</th>
-                                    <th>BGT - Interest</th>
-                                    <th>BGT - CM Excl</th>
-                                    <th>FCT - MT</th>
-                                    <th>FCT - Sales</th>
-                                    <th>FCT - VC</th>
-                                    <th>FCT - CM</th>
-                                    <th>PLANT</th>
-                                    <th>UOM</th>
-                                    <th>Category 1-8</th>
-                                    <th>Flour Bran Category</th>
-                                    <th>MPBP Category</th>
-                                    <th>Series Category</th>
-                                    <th>Sales Mix</th>
-                                    <th>Concatenate</th>
-                                    <th>Customer by Channel</th>
-                                    <th>Customer by Area</th>
-                                    <th>GT Industrial</th>
-                                    <th>Customer Business Size</th>
-                                    <th>Customers Consumption</th>
-                                    <th>Product Purpose</th>
-                                    <th>Area Only</th>
-                                    <th>Channel by Product</th>
-                                    <th>Biz Type</th>
-                                    <th>Biz Size</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <!-- Baris akan dipenuhi di sini oleh JavaScript -->
-                            </tbody>
-                        </table>
+                                        <th>No</th>
+                                        <th>Upload Time</th>
+                                        <th>Is Active</th>
+                                        <th hidden>Action</th>
+                                        <th>Area</th>
+                                        <th>Location</th>
+                                        <th>Customer No</th>
+                                        <th>Customer Name</th>
+                                        <th>Sales Person</th>
+                                        <th>Description</th>
+                                        <th>Product</th>
+                                        <th>ACT - MT</th>
+                                        <th>ACT - Gross Sales</th>
+                                        <th>ACT - Freight Local</th>
+                                        <th>ACT - Whs Trf</th>
+                                        <th>ACT - Freight Export</th>
+                                        <th>ACT - Loco Sales</th>
+                                        <th>ACT - DM Utility Cost</th>
+                                        <th>ACT - CM Excl</th>
+                                        <th>ACT - FX</th>
+                                        <th>ACT - Interest</th>
+                                        <th>ACTual CM Incl</th>
+                                        <th>OPEX</th>
+                                        <th>Remark</th>
+                                        <th>Month</th>
+                                        <th>Period</th>
+                                        <th>Year</th>
+                                        <th>Capacity</th>
+                                        <th>BGT - MT</th>
+                                        <th>BGT - Sales</th>
+                                        <th>BGT - VC</th>
+                                        <th>BGT - CM</th>
+                                        <th>BGT - FX</th>
+                                        <th>BGT - Interest</th>
+                                        <th>BGT - CM Excl</th>
+                                        <th>FCT - MT</th>
+                                        <th>FCT - Sales</th>
+                                        <th>FCT - VC</th>
+                                        <th>FCT - CM</th>
+                                        <th>PLANT</th>
+                                        <th>UOM</th>
+                                        <th>Category 1-8</th>
+                                        <th>Flour Bran Category</th>
+                                        <th>MPBP Category</th>
+                                        <th>Series Category</th>
+                                        <th>Sales Mix</th>
+                                        <th>Concatenate</th>
+                                        <th>Customer by Channel</th>
+                                        <th>Customer by Area</th>
+                                        <th>GT Industrial</th>
+                                        <th>Customer Business Size</th>
+                                        <th>Customers Consumption</th>
+                                        <th>Product Purpose</th>
+                                        <th>Area Only</th>
+                                        <th>Channel by Product</th>
+                                        <th>Biz Type</th>
+                                        <th>Biz Size</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Baris akan dipenuhi di sini oleh JavaScript -->
+                                </tbody>
+                            </table>
 
-                    </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -504,8 +508,15 @@
                         $('#progressBar').css('width', '0%').attr('aria-valuenow', 0).text('0%'); // Reset progress bar
                     },
                     success: function (response) {
-                        alert('File uploaded successfully!');
-                        fetchTransaksiData(); // Fetch data after successful upload
+                        alert(response);
+                        // swal({
+                        //     title: "Success!",
+                        //     text: response, // This will contain the total data uploaded message
+                        //     icon: "success",
+                        //     button: "OK",
+                        // }).then(() => {
+                        //     location.reload(); // Reload the page after closing the alert
+                        // });
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                         alert('Error uploading file: ' + textStatus);
@@ -597,7 +608,7 @@
                 };
                 fetchFilteredData(filters);
             });
-            
+
             function fetchFilteredData(filters) {
                 $.ajax({
                     type: "GET",
@@ -613,88 +624,88 @@
                     }
                 });
             }
-  
+
             function populateTable(data) {
                 var table = new DataTable('#table-monitoring');
                 table.destroy();
                 const tbody = $('#table-monitoring tbody');
                 $('#table-monitoring tbody').empty();
 
-               // tbody.empty(); // Clear existing rows
+                // tbody.empty(); // Clear existing rows
                 // Check if data is defined and is an array
                 if (data && Array.isArray(data)) {
                     data.forEach((item, index) => {
                         const activeClass = item.isActive ? 'active' : 'inactive';
                         const row = `  <tr data-id="${item.id}"> <!-- Store the ID for updates -->
-                            <td><input type="checkbox" class="row-checkbox" /></td> 
-                                                             <td>${index + 1}</td>
-                                                             <td>${formatDate(item.uploadTime)}</td>
-                                                             <td> <select  class="form-control is-active-dropdown" data-id="${item.id}">
-                                                                    <option value="true" ${item.isActive ? 'selected' : ''}>Yes</option>
-                                                                    <option value="false" ${!item.isActive ? 'selected' : ''}>No</option>
-                                                                   </select>
-                                                            </td>
-                                                            <td hidden>  <button class="btn btn-primary update-button" data-id=${item.id}>Update</button>   </td>
-                                                            <td contenteditable="true" class="editable">${item.area}</td>
-                                                            <td contenteditable="true" class="editable">${item.location || 'N/A'}</td>
-                                                            <td contenteditable="true" class="editable">${item.customer_No || 'N/A'}</td>
-                                                            <td contenteditable="true" class="editable">${item.customer_Name}</td>
-                                                            <td contenteditable="true" class="editable">${item.sales_Person}</td>
-                                                            <td contenteditable="true" class="editable">${item.dscription}</td>
-                                                            <td contenteditable="true" class="editable">${item.product}</td>
-                                                            <td contenteditable="true" class="editable">${item.acT_MT}</td>
-                                                            <td contenteditable="true" class="editable">${item.acT_Gross_Sales}</td>
-                                                            <td contenteditable="true" class="editable">${item.acT_Freight_Local}</td>
-                                                            <td contenteditable="true" class="editable">${item.acT_Whs_Trf}</td>
-                                                            <td contenteditable="true" class="editable">${item.acT_Freight_Export}</td>
-                                                            <td contenteditable="true" class="editable">${item.acT_Loco_Sales}</td>
-                                                            <td contenteditable="true" class="editable">${item.acT_DM_Utility_Cost}</td>
-                                                            <td contenteditable="true" class="editable">${item.acT_CM_Excl}</td>
-                                                            <td contenteditable="true" class="editable">${item.acT_FX}</td>
-                                                            <td contenteditable="true" class="editable">${item.acT_Interest}</td>
-                                                            <td contenteditable="true" class="editable">${item.acTual_CM_Incl}</td>
-                                                            <td contenteditable="true" class="editable">${item.opex}</td>
-                                                             <td contenteditable="true" class="editable">${item.remark}</td>
-                                                             <td contenteditable="true" class="editable">${item.month}</td>
-                                                             <td contenteditable="true" class="editable">${item.period}</td>
-                                                             <td contenteditable="true" class="editable">${item.year}</td>
-                                                            <td contenteditable="true" class="editable">${item.capacity}</td>
-                                                            <td contenteditable="true" class="editable">${item.bgT_MT}</td>
-                                                            <td contenteditable="true" class="editable">${item.bgT_Sales}</td>
-                                                            <td contenteditable="true" class="editable">${item.bgT_VC}</td>
-                                                            <td contenteditable="true" class="editable">${item.bgT_CM}</td>
-                                                            <td contenteditable="true" class="editable">${item.bgT_FX}</td>
-                                                            <td contenteditable="true" class="editable">${item.bgT_Interest}</td>
-                                                            <td contenteditable="true" class="editable">${item.bgT_CM_Excl}</td>
-                                                            <td contenteditable="true" class="editable">${item.fcT_MT}</td>
-                                                            <td contenteditable="true" class="editable">${item.fcT_Sales}</td>
-                                                            <td contenteditable="true" class="editable">${item.fcT_VC}</td>
-                                                            <td contenteditable="true" class="editable">${item.fcT_CM}</td>
-                                                            <td contenteditable="true" class="editable">${item.plant}</td>
-                                                             <td contenteditable="true" class="editable">${item.uom}</td>
-                                                             <td contenteditable="true" class="editable">${item.category_1_8}</td>
-                                                             <td contenteditable="true" class="editable">${item.flour_Bran_Category}</td>
-                                                             <td contenteditable="true" class="editable">${item.mpbP_Category}</td>
-                                                             <td contenteditable="true" class="editable">${item.series_Category}</td>
-                                                             <td contenteditable="true" class="editable">${item.sales_Mix}</td>
-                                                             <td contenteditable="true" class="editable">${item.concatenatE1}</td>
-                                                             <td contenteditable="true" class="editable">${item.customer_by_Channel}</td>
-                                                             <td contenteditable="true" class="editable">${item.customer_by_Area}</td>
-                                                             <td contenteditable="true" class="editable">${item.gT_Industrial}</td>
-                                                             <td contenteditable="true" class="editable">${item.customer_Business_Size }</td>
-                                                             <td contenteditable="true" class="editable">${item.customers_Consumption}</td>
-                                                             <td contenteditable="true" class="editable">${item.product_Purpose}</td>
-                                                             <td contenteditable="true" class="editable">${item.area_Only}</td>
-                                                             <td contenteditable="true" class="editable">${item.channel_by_Product }</td>
-                                                             <td contenteditable="true" class="editable">${item.biz_Type }</td>
-                                                             <td contenteditable="true" class="editable">${item.biz_Size}</td>
+                                    <td><input type="checkbox" class="row-checkbox" /></td>
+                                                                     <td>${index + 1}</td>
+                                                                     <td>${formatDate(item.uploadTime)}</td>
+                                                                     <td> <select  class="form-control is-active-dropdown" data-id="${item.id}">
+                                                                            <option value="true" ${item.isActive ? 'selected' : ''}>Yes</option>
+                                                                            <option value="false" ${!item.isActive ? 'selected' : ''}>No</option>
+                                                                           </select>
+                                                                    </td>
+                                                                    <td hidden>  <button class="btn btn-primary update-button" data-id=${item.id}>Update</button>   </td>
+                                                                    <td contenteditable="true" class="editable">${item.area}</td>
+                                                                    <td contenteditable="true" class="editable">${item.location || 'N/A'}</td>
+                                                                    <td contenteditable="true" class="editable">${item.customer_No || 'N/A'}</td>
+                                                                    <td contenteditable="true" class="editable">${item.customer_Name}</td>
+                                                                    <td contenteditable="true" class="editable">${item.sales_Person}</td>
+                                                                    <td contenteditable="true" class="editable">${item.dscription}</td>
+                                                                    <td contenteditable="true" class="editable">${item.product}</td>
+                                                                    <td contenteditable="true" class="editable">${item.acT_MT}</td>
+                                                                    <td contenteditable="true" class="editable">${item.acT_Gross_Sales}</td>
+                                                                    <td contenteditable="true" class="editable">${item.acT_Freight_Local}</td>
+                                                                    <td contenteditable="true" class="editable">${item.acT_Whs_Trf}</td>
+                                                                    <td contenteditable="true" class="editable">${item.acT_Freight_Export}</td>
+                                                                    <td contenteditable="true" class="editable">${item.acT_Loco_Sales}</td>
+                                                                    <td contenteditable="true" class="editable">${item.acT_DM_Utility_Cost}</td>
+                                                                    <td contenteditable="true" class="editable">${item.acT_CM_Excl}</td>
+                                                                    <td contenteditable="true" class="editable">${item.acT_FX}</td>
+                                                                    <td contenteditable="true" class="editable">${item.acT_Interest}</td>
+                                                                    <td contenteditable="true" class="editable">${item.acTual_CM_Incl}</td>
+                                                                    <td contenteditable="true" class="editable">${item.opex}</td>
+                                                                     <td contenteditable="true" class="editable">${item.remark}</td>
+                                                                     <td contenteditable="true" class="editable">${item.month}</td>
+                                                                     <td contenteditable="true" class="editable">${item.period}</td>
+                                                                     <td contenteditable="true" class="editable">${item.year}</td>
+                                                                    <td contenteditable="true" class="editable">${item.capacity}</td>
+                                                                    <td contenteditable="true" class="editable">${item.bgT_MT}</td>
+                                                                    <td contenteditable="true" class="editable">${item.bgT_Sales}</td>
+                                                                    <td contenteditable="true" class="editable">${item.bgT_VC}</td>
+                                                                    <td contenteditable="true" class="editable">${item.bgT_CM}</td>
+                                                                    <td contenteditable="true" class="editable">${item.bgT_FX}</td>
+                                                                    <td contenteditable="true" class="editable">${item.bgT_Interest}</td>
+                                                                    <td contenteditable="true" class="editable">${item.bgT_CM_Excl}</td>
+                                                                    <td contenteditable="true" class="editable">${item.fcT_MT}</td>
+                                                                    <td contenteditable="true" class="editable">${item.fcT_Sales}</td>
+                                                                    <td contenteditable="true" class="editable">${item.fcT_VC}</td>
+                                                                    <td contenteditable="true" class="editable">${item.fcT_CM}</td>
+                                                                    <td contenteditable="true" class="editable">${item.plant}</td>
+                                                                     <td contenteditable="true" class="editable">${item.uom}</td>
+                                                                     <td contenteditable="true" class="editable">${item.category_1_8}</td>
+                                                                     <td contenteditable="true" class="editable">${item.flour_Bran_Category}</td>
+                                                                     <td contenteditable="true" class="editable">${item.mpbP_Category}</td>
+                                                                     <td contenteditable="true" class="editable">${item.series_Category}</td>
+                                                                     <td contenteditable="true" class="editable">${item.sales_Mix}</td>
+                                                                     <td contenteditable="true" class="editable">${item.concatenatE1}</td>
+                                                                     <td contenteditable="true" class="editable">${item.customer_by_Channel}</td>
+                                                                     <td contenteditable="true" class="editable">${item.customer_by_Area}</td>
+                                                                     <td contenteditable="true" class="editable">${item.gT_Industrial}</td>
+                                                                     <td contenteditable="true" class="editable">${item.customer_Business_Size}</td>
+                                                                     <td contenteditable="true" class="editable">${item.customers_Consumption}</td>
+                                                                     <td contenteditable="true" class="editable">${item.product_Purpose}</td>
+                                                                     <td contenteditable="true" class="editable">${item.area_Only}</td>
+                                                                     <td contenteditable="true" class="editable">${item.channel_by_Product}</td>
+                                                                     <td contenteditable="true" class="editable">${item.biz_Type}</td>
+                                                                     <td contenteditable="true" class="editable">${item.biz_Size}</td>
 
-                                                        </tr>
-                                                    `;
+                                                                </tr>
+                                                            `;
                         tbody.append(row); // Append the new row to the table body
                     });
                     // Reinitialize the DataTable after populating
-           
+
                     initializeDataTable();
 
                 }
@@ -704,7 +715,7 @@
             }
 
             function initializeDataTable() {
-               
+
 
                 $('#table-monitoring').DataTable({
                     lengthMenu: [
@@ -989,7 +1000,7 @@
                     $('#distinctValueSelect2').empty().append('<option value="">Select Value</option>');
                 }
             });
-           
+
             // Event listener for the submit button
             $('#submitButton').on('click', function () {
                 const header1 = $('#headerSelect1').val();
@@ -997,11 +1008,11 @@
                 const header2 = $('#headerSelect2').val();
                 const distinctValue2 = $('#distinctValueSelect2').val();
                 const inputText = $('#inputText').val();
-                if (!header1 || !distinctValue  || !header2 || !distinctValue2 || !inputText) {
+                if (!header1 || !distinctValue || !header2 || !distinctValue2 || !inputText) {
                     // Show SweetAlert error message
                     Swal.fire({
                         icon: 'error',
-                        title: 'Oops...',   
+                        title: 'Oops...',
                         text: 'Please fill in all fields before proceeding!',
                     });
                 } else {
@@ -1028,7 +1039,7 @@
                     },
                     error: function (xhr, status, error) {
                         console.error("Error submitting data: ", error);
-                      //  alert('Error submitting data: ' + error);
+                        //  alert('Error submitting data: ' + error);
                     }
                 });
             });

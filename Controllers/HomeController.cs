@@ -464,6 +464,8 @@ namespace ToolsCommercial.Controllers
         {
             if (file == null || file.Length == 0)
                 return BadRequest("No file uploaded.");
+            int totalRowinsert = 0;
+
             if (file.FileName.EndsWith("xlsx") || file.FileName.EndsWith("XLSX"))
             {
                 using (var stream = new MemoryStream())
@@ -482,70 +484,72 @@ namespace ToolsCommercial.Controllers
                         {
                             for (int row = 2; row <= rowCount; row++)
                             {
-                                var Remark = worksheet.Cells[row, 20].Text;
+                                var Remark = worksheet.Cells[row, 20].Value.ToString();
                                 if (Remark == "" || Remark == null)
                                 {
                                     continue;
                                 }
                                 var transaksi = new Transaksi
                                 {
-                                    Area = worksheet.Cells[row, 1].Text,
-                                    Location = worksheet.Cells[row, 2].Text,
-                                    Customer_No = worksheet.Cells[row, 3].Text,
-                                    Customer_Name = worksheet.Cells[row, 4].Text,
-                                    Sales_Person = worksheet.Cells[row, 5].Text,
-                                    Dscription = worksheet.Cells[row, 6].Text,
-                                    Product = worksheet.Cells[row, 7].Text,
-                                    ACT_MT = TryParseFloat(worksheet.Cells[row, 8].Text),
-                                    ACT_Gross_Sales = TryParseFloat(worksheet.Cells[row, 9].Text),
-                                    ACT_Freight_Local = TryParseFloat(worksheet.Cells[row, 10].Text),
-                                    ACT_Whs_Trf = TryParseFloat(worksheet.Cells[row, 11].Text),
-                                    ACT_Freight_Export = TryParseFloat(worksheet.Cells[row, 12].Text),
-                                    ACT_Loco_Sales = TryParseFloat(worksheet.Cells[row, 13].Text),
-                                    ACT_DM_Utility_Cost = TryParseFloat(worksheet.Cells[row, 14].Text),
-                                    ACT_CM_Excl = TryParseFloat(worksheet.Cells[row, 15].Text),
-                                    ACT_FX = TryParseFloat(worksheet.Cells[row, 16].Text),
-                                    ACT_Interest = TryParseFloat(worksheet.Cells[row, 17].Text),
-                                    ACTual_CM_Incl = TryParseFloat(worksheet.Cells[row, 18].Text),
-                                    OPEX = TryParseFloat(worksheet.Cells[row, 19].Text),
-                                    Remark = worksheet.Cells[row, 20].Text,
-                                    Month = worksheet.Cells[row, 21].Text,
-                                    Period = worksheet.Cells[row, 22].Text,
-                                    Year = int.TryParse(worksheet.Cells[row, 23].Text, out var year) ? year : 0,
-                                    Capacity = TryParseFloat(worksheet.Cells[row, 24].Text),
-                                    BGT_MT = TryParseFloat(worksheet.Cells[row, 25].Text),
-                                    BGT_Sales = TryParseFloat(worksheet.Cells[row, 26].Text),
-                                    BGT_VC = TryParseFloat(worksheet.Cells[row, 27].Text),
-                                    BGT_CM = TryParseFloat(worksheet.Cells[row, 28].Text),
-                                    BGT_FX = TryParseFloat(worksheet.Cells[row, 29].Text),
-                                    BGT_Interest = TryParseFloat(worksheet.Cells[row, 30].Text),
-                                    BGT_CM_Excl = TryParseFloat(worksheet.Cells[row, 31].Text),
-                                    FCT_MT = TryParseFloat(worksheet.Cells[row, 32].Text),
-                                    FCT_Sales = TryParseFloat(worksheet.Cells[row, 33].Text),
-                                    FCT_VC = TryParseFloat(worksheet.Cells[row, 34].Text),
-                                    FCT_CM = TryParseFloat(worksheet.Cells[row, 35].Text),
-                                    PLANT = worksheet.Cells[row, 36].Text,
-                                    UOM = worksheet.Cells[row, 37].Text,
-                                    Category_1_8 = worksheet.Cells[row, 38].Text,
-                                    Flour_Bran_Category = worksheet.Cells[row, 39].Text,
-                                    MPBP_Category = worksheet.Cells[row, 40].Text,
-                                    Series_Category = worksheet.Cells[row, 41].Text,
-                                    Sales_Mix = worksheet.Cells[row, 42].Text,
-                                    CONCATENATE1 = worksheet.Cells[row, 43].Text,
-                                    Customer_by_Channel = worksheet.Cells[row, 44].Text,
-                                    Customer_by_Area = worksheet.Cells[row, 45].Text,
-                                    GT_Industrial = worksheet.Cells[row, 46].Text,
-                                    Customer_Business_Size = worksheet.Cells[row, 47].Text,
-                                    Customers_Consumption = worksheet.Cells[row, 48].Text,
-                                    Product_Purpose = worksheet.Cells[row, 49].Text,
-                                    Area_Only = worksheet.Cells[row, 50].Text,
-                                    Channel_by_Product = worksheet.Cells[row, 51].Text,
-                                    Biz_Type = worksheet.Cells[row, 52].Text,
-                                    Biz_Size = worksheet.Cells[row, 53].Text,
+                                    Area = worksheet.Cells[row, 1].Value?.ToString() ?? string.Empty,
+                                    Location = worksheet.Cells[row, 2].Value?.ToString() ?? string.Empty,
+                                    Customer_No = worksheet.Cells[row, 3].Value?.ToString() ?? string.Empty,
+                                    Customer_Name = worksheet.Cells[row, 4].Value?.ToString() ?? string.Empty,
+                                    Sales_Person = worksheet.Cells[row, 5].Value?.ToString() ?? string.Empty,
+                                    Dscription = worksheet.Cells[row, 6].Value?.ToString() ?? string.Empty,
+                                    Product = worksheet.Cells[row, 7].Value?.ToString() ?? string.Empty,
+                                    ACT_MT = ConvertToDecimal(worksheet.Cells[row, 8].Value),
+                                    ACT_Gross_Sales = ConvertToDecimal(worksheet.Cells[row, 9].Value),
+                                    ACT_Freight_Local = ConvertToDecimal(worksheet.Cells[row, 10].Value),
+                                    ACT_Whs_Trf = ConvertToDecimal(worksheet.Cells[row, 11].Value),
+                                    ACT_Freight_Export = ConvertToDecimal(worksheet.Cells[row, 12].Value),
+                                    ACT_Loco_Sales = ConvertToDecimal(worksheet.Cells[row, 13].Value),
+                                    ACT_DM_Utility_Cost = ConvertToDecimal(worksheet.Cells[row, 14].Value),
+                                    ACT_CM_Excl = ConvertToDecimal(worksheet.Cells[row, 15].Value),
+                                    ACT_FX = ConvertToDecimal(worksheet.Cells[row, 16].Value),
+                                    ACT_Interest = ConvertToDecimal(worksheet.Cells[row, 17].Value),
+                                    ACTual_CM_Incl = ConvertToDecimal(worksheet.Cells[row, 18].Value),
+                                    OPEX = worksheet.Cells[row, 19].Value?.ToString() ?? string.Empty,
+                                    Remark = worksheet.Cells[row, 20].Value?.ToString() ?? string.Empty,
+                                    Month = worksheet.Cells[row, 21].Value?.ToString() ?? string.Empty,
+                                    Period = worksheet.Cells[row, 22].Value?.ToString() ?? string.Empty,
+                                    Year = int.TryParse(worksheet.Cells[row, 23].Value?.ToString(), out var year) ? year : 0,
+                                    Capacity = worksheet.Cells[row, 24].Value?.ToString() ?? string.Empty,
+                                    BGT_MT = ConvertToDecimal(worksheet.Cells[row, 25].Value),
+                                    BGT_Sales = ConvertToDecimal(worksheet.Cells[row, 26].Value),
+                                    BGT_VC = ConvertToDecimal(worksheet.Cells[row, 27].Value),
+                                    BGT_CM = ConvertToDecimal(worksheet.Cells[row, 28].Value),
+                                    BGT_FX = ConvertToDecimal(worksheet.Cells[row, 29].Value),
+                                    BGT_Interest = ConvertToDecimal(worksheet.Cells[row, 30].Value),
+                                    BGT_CM_Excl = ConvertToDecimal(worksheet.Cells[row, 31].Value),
+                                    FCT_MT = ConvertToDecimal(worksheet.Cells[row, 32].Value),
+                                    FCT_Sales = ConvertToDecimal(worksheet.Cells[row, 33].Value),
+                                    FCT_VC = ConvertToDecimal(worksheet.Cells[row, 34].Value),
+                                    FCT_CM = ConvertToDecimal(worksheet.Cells[row, 35].Value),
+                                    PLANT = worksheet.Cells[row, 36].Value?.ToString() ?? string.Empty,
+                                    UOM = worksheet.Cells[row, 37].Value?.ToString() ?? string.Empty,
+                                    Category_1_8 = worksheet.Cells[row, 38].Value?.ToString() ?? string.Empty,
+                                    Flour_Bran_Category = worksheet.Cells[row, 39].Value?.ToString() ?? string.Empty,
+                                    MPBP_Category = worksheet.Cells[row, 40].Text ?? string.Empty,
+                                    Series_Category = worksheet.Cells[row, 41].Value?.ToString() ?? string.Empty,
+                                    Sales_Mix = worksheet.Cells[row, 42].Value?.ToString() ?? string.Empty,
+                                    CONCATENATE1 = worksheet.Cells[row, 43].Value?.ToString() ?? string.Empty,
+                                    Customer_by_Channel = worksheet.Cells[row, 44].Value?.ToString() ?? string.Empty,
+                                    Customer_by_Area = worksheet.Cells[row, 45].Value?.ToString() ?? string.Empty,
+                                    GT_Industrial = worksheet.Cells[row, 46].Value?.ToString() ?? string.Empty,
+                                    Customer_Business_Size = worksheet.Cells[row, 47].Value?.ToString() ?? string.Empty,
+                                    Customers_Consumption = worksheet.Cells[row, 48].Value?.ToString() ?? string.Empty,
+                                    Product_Purpose = worksheet.Cells[row, 49].Value?.ToString() ?? string.Empty,
+                                    Area_Only = worksheet.Cells[row, 50].Value?.ToString() ?? string.Empty,
+                                    Channel_by_Product = worksheet.Cells[row, 51].Value?.ToString() ?? string.Empty,
+                                    Biz_Type = worksheet.Cells[row, 52].Value?.ToString() ?? string.Empty,
+                                    Biz_Size = worksheet.Cells[row, 53].Value?.ToString() ?? string.Empty,
+
                                     UploadTime = DateTime.Now,
                                     IsActive = true
                                 };
 
+                                totalRowinsert++;
                                 _context.Transaksis.Add(transaksi);
                             }
 
@@ -561,7 +565,7 @@ namespace ToolsCommercial.Controllers
                     }
                 }
 
-                return Ok("File uploaded and data inserted successfully.");
+                return Ok("File uploaded and data inserted successfully. Total Data di upload : " + totalRowinsert);
 
             }
             else
@@ -570,6 +574,21 @@ namespace ToolsCommercial.Controllers
             }
 
 
+        }
+        private decimal? ConvertToDecimal(object value)
+        {
+            if (value == null)
+            {
+                return null; // Return null if the value is null  
+            }
+
+            // Try to convert the value to a decimal  
+            if (decimal.TryParse(value.ToString(), out decimal result))
+            {
+                return Math.Round(result, 3); // Round to 3 decimal places if needed  
+            }
+
+            return null; // Return null if conversion fails  
         }
         public IActionResult BulkUpdateIsActive([FromBody] BulkUpdateRequest request)
         {
@@ -628,34 +647,34 @@ namespace ToolsCommercial.Controllers
             transaksi.Sales_Person = request.Sales_Person;
             transaksi.Dscription = request.Dscription;
             transaksi.Product = request.Product;
-            if (request.ACT_MT.HasValue) transaksi.ACT_MT = request.ACT_MT.Value;
-            if (request.ACT_Gross_Sales.HasValue) transaksi.ACT_Gross_Sales = request.ACT_Gross_Sales.Value;
-            if (request.ACT_Freight_Local.HasValue) transaksi.ACT_Freight_Local = request.ACT_Freight_Local.Value;
-            if (request.ACT_Whs_Trf.HasValue) transaksi.ACT_Whs_Trf = request.ACT_Whs_Trf.Value;
-            if (request.ACT_Freight_Export.HasValue) transaksi.ACT_Freight_Export = request.ACT_Freight_Export.Value;
-            if (request.ACT_Loco_Sales.HasValue) transaksi.ACT_Loco_Sales = request.ACT_Loco_Sales.Value;
-            if (request.ACT_DM_Utility_Cost.HasValue) transaksi.ACT_DM_Utility_Cost = request.ACT_DM_Utility_Cost.Value;
-            if (request.ACT_CM_Excl.HasValue) transaksi.ACT_CM_Excl = request.ACT_CM_Excl.Value;
-            if (request.ACT_FX.HasValue) transaksi.ACT_FX = request.ACT_FX.Value;
-            if (request.ACT_Interest.HasValue) transaksi.ACT_Interest = request.ACT_Interest.Value;
-            if (request.ACTual_CM_Incl.HasValue) transaksi.ACTual_CM_Incl = request.ACTual_CM_Incl.Value;
-            if (request.OPEX.HasValue) transaksi.OPEX = request.OPEX.Value;
+            if (request.ACT_MT != null) transaksi.ACT_MT = request.ACT_MT;
+            if (request.ACT_Gross_Sales != null) transaksi.ACT_Gross_Sales = request.ACT_Gross_Sales;
+            if (request.ACT_Freight_Local != null) transaksi.ACT_Freight_Local = request.ACT_Freight_Local;
+            if (request.ACT_Whs_Trf != null) transaksi.ACT_Whs_Trf = request.ACT_Whs_Trf;
+            if (request.ACT_Freight_Export != null) transaksi.ACT_Freight_Export = request.ACT_Freight_Export;
+            if (request.ACT_Loco_Sales != null) transaksi.ACT_Loco_Sales = request.ACT_Loco_Sales;
+            if (request.ACT_DM_Utility_Cost != null) transaksi.ACT_DM_Utility_Cost = request.ACT_DM_Utility_Cost;
+            if (request.ACT_CM_Excl != null) transaksi.ACT_CM_Excl = request.ACT_CM_Excl;
+            if (request.ACT_FX != null) transaksi.ACT_FX = request.ACT_FX;
+            if (request.ACT_Interest != null) transaksi.ACT_Interest = request.ACT_Interest;
+            if (request.ACTual_CM_Incl != null) transaksi.ACTual_CM_Incl = request.ACTual_CM_Incl;
+            if (request.OPEX != null) transaksi.OPEX = request.OPEX;
             transaksi.Remark = request.Remark;
             transaksi.Month = request.Month;
             transaksi.Period = request.Period;
             if (request.Year.HasValue) transaksi.Year = request.Year.Value;
-            if (request.Capacity.HasValue) transaksi.Capacity = request.Capacity.Value;
-            if (request.BGT_MT.HasValue) transaksi.BGT_MT = request.BGT_MT.Value;
-            if (request.BGT_Sales.HasValue) transaksi.BGT_Sales = request.BGT_Sales.Value;
-            if (request.BGT_VC.HasValue) transaksi.BGT_VC = request.BGT_VC.Value;
-            if (request.BGT_CM.HasValue) transaksi.BGT_CM = request.BGT_CM.Value;
-            if (request.BGT_FX.HasValue) transaksi.BGT_FX = request.BGT_FX.Value;
-            if (request.BGT_Interest.HasValue) transaksi.BGT_Interest = request.BGT_Interest.Value;
-            if (request.BGT_CM_Excl.HasValue) transaksi.BGT_CM_Excl = request.BGT_CM_Excl.Value;
-            if (request.FCT_MT.HasValue) transaksi.FCT_MT = request.FCT_MT.Value;
-            if (request.FCT_Sales.HasValue) transaksi.FCT_Sales = request.FCT_Sales.Value;
-            if (request.FCT_VC.HasValue) transaksi.FCT_VC = request.FCT_VC.Value;
-            if (request.FCT_CM.HasValue) transaksi.FCT_CM = request.FCT_CM.Value;
+            if (request.Capacity != null) transaksi.Capacity = request.Capacity;
+            if (request.BGT_MT != null) transaksi.BGT_MT = request.BGT_MT;
+            if (request.BGT_Sales != null) transaksi.BGT_Sales = request.BGT_Sales;
+            if (request.BGT_VC != null) transaksi.BGT_VC = request.BGT_VC;
+            if (request.BGT_CM != null) transaksi.BGT_CM = request.BGT_CM;
+            if (request.BGT_FX != null) transaksi.BGT_FX = request.BGT_FX;
+            if (request.BGT_Interest != null) transaksi.BGT_Interest = request.BGT_Interest;
+            if (request.BGT_CM_Excl != null) transaksi.BGT_CM_Excl = request.BGT_CM_Excl;
+            if (request.FCT_MT != null) transaksi.FCT_MT = request.FCT_MT;
+            if (request.FCT_Sales != null) transaksi.FCT_Sales = request.FCT_Sales;
+            if (request.FCT_VC != null) transaksi.FCT_VC = request.FCT_VC;
+            if (request.FCT_CM != null) transaksi.FCT_CM = request.FCT_CM;
             transaksi.PLANT = request.PLANT;
             transaksi.UOM = request.UOM;
             transaksi.Category_1_8 = request.Category_1_8;
@@ -679,14 +698,7 @@ namespace ToolsCommercial.Controllers
 
             return Ok("Update successful.");
         }
-        private float TryParseFloat(string value)
-        {
-            if (float.TryParse(value, NumberStyles.Float, CultureInfo.InvariantCulture, out float result))
-            {
-                return result;
-            }
-            return 0; // or handle as needed (e.g., log the error, throw an exception, etc.)
-        }
+        
         #region gett all dropdown
         // Endpoint untuk mendapatkan distinct Area
         [HttpGet("api/transaksi/distinct/area")]
