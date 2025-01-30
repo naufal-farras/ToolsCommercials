@@ -341,7 +341,7 @@
                                         <th><input type="checkbox" id="selectAll" /></th> <!-- Master checkbox -->
                                         <th>No</th>
                                         <th>Upload Time</th>
-                                        <th>Is Active</th>
+                                        <th hidden>Is Active</th>
                                         <th hidden>Action</th>
                                         <th>Area</th>
                                         <th>Location</th>
@@ -686,59 +686,59 @@
                                                                            </select>
                                                                     </td>
                                                                     <td hidden>  <button class="btn btn-primary update-button" data-id=${item.id}>Update</button>   </td>
-                                                                    <td contenteditable="true" class="editable">${item.area}</td>
-                                                                    <td contenteditable="true" class="editable">${item.location || 'N/A'}</td>
-                                                                    <td contenteditable="true" class="editable">${item.customer_No || 'N/A'}</td>
-                                                                    <td contenteditable="true" class="editable">${item.customer_Name}</td>
-                                                                    <td contenteditable="true" class="editable">${item.sales_Person}</td>
-                                                                    <td contenteditable="true" class="editable">${item.dscription}</td>
-                                                                    <td contenteditable="true" class="editable">${item.product}</td>
-                                                                    <td contenteditable="true" class="editable">${item.acT_MT}</td>
-                                                                    <td contenteditable="true" class="editable">${item.acT_Gross_Sales}</td>
-                                                                    <td contenteditable="true" class="editable">${item.acT_Freight_Local}</td>
-                                                                    <td contenteditable="true" class="editable">${item.acT_Whs_Trf}</td>
-                                                                    <td contenteditable="true" class="editable">${item.acT_Freight_Export}</td>
-                                                                    <td contenteditable="true" class="editable">${item.acT_Loco_Sales}</td>
-                                                                    <td contenteditable="true" class="editable">${item.acT_DM_Utility_Cost}</td>
-                                                                    <td contenteditable="true" class="editable">${item.acT_CM_Excl}</td>
-                                                                    <td contenteditable="true" class="editable">${item.acT_FX}</td>
-                                                                    <td contenteditable="true" class="editable">${item.acT_Interest}</td>
-                                                                    <td contenteditable="true" class="editable">${item.acTual_CM_Incl}</td>
-                                                                    <td contenteditable="true" class="editable">${item.opex}</td>
-                                                                     <td contenteditable="true" class="editable">${item.remark}</td>
-                                                                     <td contenteditable="true" class="editable">${item.month}</td>
-                                                                     <td contenteditable="true" class="editable">${item.period}</td>
-                                                                     <td contenteditable="true" class="editable">${item.year}</td>
-                                                                    <td contenteditable="true" class="editable">${item.capacity}</td>
-                                                                    <td contenteditable="true" class="editable">${item.bgT_MT}</td>
-                                                                    <td contenteditable="true" class="editable">${item.bgT_Sales}</td>
-                                                                    <td contenteditable="true" class="editable">${item.bgT_VC}</td>
-                                                                    <td contenteditable="true" class="editable">${item.bgT_CM}</td>
-                                                                    <td contenteditable="true" class="editable">${item.bgT_FX}</td>
-                                                                    <td contenteditable="true" class="editable">${item.bgT_Interest}</td>
-                                                                    <td contenteditable="true" class="editable">${item.bgT_CM_Excl}</td>
-                                                                    <td contenteditable="true" class="editable">${item.fcT_MT}</td>
-                                                                    <td contenteditable="true" class="editable">${item.fcT_Sales}</td>
-                                                                    <td contenteditable="true" class="editable">${item.fcT_VC}</td>
-                                                                    <td contenteditable="true" class="editable">${item.fcT_CM}</td>
-                                                                    <td contenteditable="true" class="editable">${item.plant}</td>
-                                                                     <td contenteditable="true" class="editable">${item.uom}</td>
-                                                                     <td contenteditable="true" class="editable">${item.category_1_8}</td>
-                                                                     <td contenteditable="true" class="editable">${item.flour_Bran_Category}</td>
-                                                                     <td contenteditable="true" class="editable">${item.mpbP_Category}</td>
-                                                                     <td contenteditable="true" class="editable">${item.series_Category}</td>
-                                                                     <td contenteditable="true" class="editable">${item.sales_Mix}</td>
-                                                                     <td contenteditable="true" class="editable">${item.concatenatE1}</td>
-                                                                     <td contenteditable="true" class="editable">${item.customer_by_Channel}</td>
-                                                                     <td contenteditable="true" class="editable">${item.customer_by_Area}</td>
-                                                                     <td contenteditable="true" class="editable">${item.gT_Industrial}</td>
-                                                                     <td contenteditable="true" class="editable">${item.customer_Business_Size}</td>
-                                                                     <td contenteditable="true" class="editable">${item.customers_Consumption}</td>
-                                                                     <td contenteditable="true" class="editable">${item.product_Purpose}</td>
-                                                                     <td contenteditable="true" class="editable">${item.area_Only}</td>
-                                                                     <td contenteditable="true" class="editable">${item.channel_by_Product}</td>
-                                                                     <td contenteditable="true" class="editable">${item.biz_Type}</td>
-                                                                     <td contenteditable="true" class="editable">${item.biz_Size}</td>
+                                                                    <td  class="">${item.area}</td>
+                                                                    <td  class="">${item.location || 'N/A'}</td>
+                                                                    <td  class="">${item.customer_No || 'N/A'}</td>
+                                                                    <td  class="">${item.customer_Name}</td>
+                                                                    <td  class="">${item.sales_Person}</td>
+                                                                    <td  class="">${item.dscription}</td>
+                                                                    <td  class="">${item.product}</td>
+                                                                    <td  class="">${item.acT_MT}</td>
+                                                                    <td  class="">${item.acT_Gross_Sales}</td>
+                                                                    <td  class="">${item.acT_Freight_Local}</td>
+                                                                    <td  class="">${item.acT_Whs_Trf}</td>
+                                                                    <td  class="">${item.acT_Freight_Export}</td>
+                                                                    <td  class="">${item.acT_Loco_Sales}</td>
+                                                                    <td  class="">${item.acT_DM_Utility_Cost}</td>
+                                                                    <td  class="">${item.acT_CM_Excl}</td>
+                                                                    <td  class="">${item.acT_FX}</td>
+                                                                    <td  class="">${item.acT_Interest}</td>
+                                                                    <td  class="">${item.acTual_CM_Incl}</td>
+                                                                    <td  class="">${item.opex}</td>
+                                                                     <td  class="">${item.remark}</td>
+                                                                     <td  class="">${item.month}</td>
+                                                                     <td  class="">${item.period}</td>
+                                                                     <td  class="">${item.year}</td>
+                                                                    <td  class="">${item.capacity}</td>
+                                                                    <td  class="">${item.bgT_MT}</td>
+                                                                    <td  class="">${item.bgT_Sales}</td>
+                                                                    <td  class="">${item.bgT_VC}</td>
+                                                                    <td  class="">${item.bgT_CM}</td>
+                                                                    <td  class="">${item.bgT_FX}</td>
+                                                                    <td  class="">${item.bgT_Interest}</td>
+                                                                    <td  class="">${item.bgT_CM_Excl}</td>
+                                                                    <td  class="">${item.fcT_MT}</td>
+                                                                    <td  class="">${item.fcT_Sales}</td>
+                                                                    <td  class="">${item.fcT_VC}</td>
+                                                                    <td  class="">${item.fcT_CM}</td>
+                                                                    <td  class="">${item.plant}</td>
+                                                                     <td  class="">${item.uom}</td>
+                                                                     <td  class="">${item.category_1_8}</td>
+                                                                     <td  class="">${item.flour_Bran_Category}</td>
+                                                                     <td  class="">${item.mpbP_Category}</td>
+                                                                     <td  class="">${item.series_Category}</td>
+                                                                     <td  class="">${item.sales_Mix}</td>
+                                                                     <td  class="">${item.concatenatE1}</td>
+                                                                     <td  class="">${item.customer_by_Channel}</td>
+                                                                     <td  class="">${item.customer_by_Area}</td>
+                                                                     <td  class="">${item.gT_Industrial}</td>
+                                                                     <td  class="">${item.customer_Business_Size}</td>
+                                                                     <td  class="">${item.customers_Consumption}</td>
+                                                                     <td  class="">${item.product_Purpose}</td>
+                                                                     <td  class="">${item.area_Only}</td>
+                                                                     <td  class="">${item.channel_by_Product}</td>
+                                                                     <td  class="">${item.biz_Type}</td>
+                                                                     <td  class="">${item.biz_Size}</td>
 
                                                                 </tr>
                                                             `;
@@ -932,8 +932,8 @@
                 updateTransaksi(updatedData);
             });
 
-            // Add blur event listener to editable cells
-            $('#table-monitoring').on('blur', '.editable', function () {
+            // Add blur event listener to  cells
+            $('#table-monitoring').on('blur', '.', function () {
                 const row = $(this).closest('tr');
                 const id = row.data('id'); // Get the ID of the row
                 const updatedData = {
@@ -941,9 +941,9 @@
                     IsActive: row.find('.is-active-dropdown').val() === 'true' // Get the selected value from the dropdown
                 };
 
-                // Collect updated values from editable cells
+                // Collect updated values from  cells
                 let hasChanges = false; // Flag to check if there are changes
-                row.find('.editable').each(function (index) {
+                row.find('.').each(function (index) {
                     const columnName = getColumnName(index); // Get the column name based on index
                     const newValue = $(this).text(); // Get the new value
                     if (updatedData[columnName] !== newValue) {
