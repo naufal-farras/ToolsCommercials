@@ -17,6 +17,7 @@ using ToolsCommercial.Data;
 using ToolsCommercial.Models;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 using System.Data;
+using OfficeOpenXml.Style;
 
 namespace ToolsCommercial.Controllers
 {
@@ -544,6 +545,8 @@ namespace ToolsCommercial.Controllers
                                     Channel_by_Product = worksheet.Cells[row, 51].Value?.ToString() ?? string.Empty,
                                     Biz_Type = worksheet.Cells[row, 52].Value?.ToString() ?? string.Empty,
                                     Biz_Size = worksheet.Cells[row, 53].Value?.ToString() ?? string.Empty,
+                                    BKKNonBKK = worksheet.Cells[row, 54].Value?.ToString() ?? string.Empty,
+                                    GTINDExp = worksheet.Cells[row, 55].Value?.ToString() ?? string.Empty,
 
                                     UploadTime = DateTime.Now,
                                     IsActive = true
@@ -882,6 +885,7 @@ namespace ToolsCommercial.Controllers
             return Ok(distinctProductPurposes);
         }
         #endregion
+      
         [HttpPost]
         public async Task<IActionResult> DeleteAllData()
         {
@@ -901,6 +905,136 @@ namespace ToolsCommercial.Controllers
             return Ok(new { data = data });
         }
 
+        public async Task<IActionResult> DownloadExcel()
+        {
+            try
+            {
+                // Fetch all Transaksi records
+                var transaksis = await _context.Transaksis.ToListAsync();
+
+                if (!transaksis.Any())
+                {
+                    return NotFound();
+                }
+
+                // Create a new Excel package
+                ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+                using (var package = new ExcelPackage())
+                {
+                    // Create a worksheet
+                    var worksheet = package.Workbook.Worksheets.Add("Transaksi");
+
+                    // Define the headers
+                    string[] headers = {
+                     "Area", "Location", "Customer No.", "Customer Name", "Sales Person", "Dscription", "Product",
+                    "ACT - MT", "ACT - Gross Sales", "ACT - Freight Local", "ACT - Whs Trf", "ACT_Freight_Export", "ACT - Loco Sales",
+                    "ACT - DM & Utility Cost", "ACT - CM (Excl)", "ACT - FX", "ACT - Interest", "ACTual CM (incl)", "OPEX", "Remark", "Month",
+                    "Period", "Year", "Capacity", "BGT - MT", "BGT - Sales", "BGT - VC", "BGT - CM", "BGT - FX", "BGT - Interest",
+                    "BGT - CM (Excl)", "FCT - MT", "FCT - Sales", "FCT - VC", "FCT - CM", "PLANT", "UOM", "1-8 Category", "Flour Bran Category",
+                    "MPBP Category", "Series Category", "Sales Mix", "CONCATENATE1", "Customer by Channel", "Customer by Area",
+                    "GT Industrial", "Customer Business Size", "Customer's Consumption", "Product Purpose", "Area only",
+                    "Channel by Product", "Biz Type", "Biz Size","BKK/Non BKK", "GT/Ind/Exp"
+                };
+
+                    // Write the headers to the first row
+                    for (int i = 0; i < headers.Length; i++)
+                    {
+                        worksheet.Cells[1, i + 1].Value = headers[i];
+                    }
+
+                    // Write the data to the worksheet
+                    int row = 2;
+                    foreach (var transaksi in transaksis)
+                    {
+                        // Customer and Location Information
+                        worksheet.Cells[row, 1].Value = transaksi.Customer_No;
+                        worksheet.Cells[row, 2].Value = transaksi.Customer_Name;
+                        worksheet.Cells[row, 3].Value = transaksi.Area;
+                        worksheet.Cells[row, 4].Value = transaksi.Location;
+                        worksheet.Cells[row, 5].Value = transaksi.Customer_by_Channel;
+                        worksheet.Cells[row, 6].Value = transaksi.Customer_by_Area;
+                        worksheet.Cells[row, 7].Value = transaksi.Customer_Business_Size;
+                        worksheet.Cells[row, 8].Value = transaksi.Customers_Consumption;
+
+                        // Product and Sales Information
+                        worksheet.Cells[row, 9].Value = transaksi.Product;
+                        worksheet.Cells[row, 10].Value = transaksi.Sales_Person;
+                        worksheet.Cells[row, 11].Value = transaksi.Dscription;
+                        worksheet.Cells[row, 12].Value = transaksi.Sales_Mix;
+                        worksheet.Cells[row, 13].Value = transaksi.Product_Purpose;
+                        worksheet.Cells[row, 14].Value = transaksi.Channel_by_Product;
+                        worksheet.Cells[row, 15].Value = transaksi.Biz_Type;
+                        worksheet.Cells[row, 16].Value = transaksi.Biz_Size;
+                        worksheet.Cells[row, 17].Value = transaksi.BKKNonBKK;
+
+                        // Financial Data - Actuals
+                        worksheet.Cells[row, 18].Value = transaksi.ACT_MT;
+                        worksheet.Cells[row, 19].Value = transaksi.ACT_Gross_Sales;
+                        worksheet.Cells[row, 20].Value = transaksi.ACT_Freight_Local;
+                        worksheet.Cells[row, 21].Value = transaksi.ACT_Whs_Trf;
+                        worksheet.Cells[row, 22].Value = transaksi.ACT_Freight_Export;
+                        worksheet.Cells[row, 23].Value = transaksi.ACT_Loco_Sales;
+                        worksheet.Cells[row, 24].Value = transaksi.ACT_DM_Utility_Cost;
+                        worksheet.Cells[row, 25].Value = transaksi.ACT_CM_Excl;
+                        worksheet.Cells[row, 26].Value = transaksi.ACT_FX;
+                        worksheet.Cells[row, 27].Value = transaksi.ACT_Interest;
+                        worksheet.Cells[row, 28].Value = transaksi.ACTual_CM_Incl;
+                        worksheet.Cells[row, 29].Value = transaksi.OPEX;
+
+                        // Financial Data - Budgets
+                        worksheet.Cells[row, 30].Value = transaksi.BGT_MT;
+                        worksheet.Cells[row, 31].Value = transaksi.BGT_Sales;
+                        worksheet.Cells[row, 32].Value = transaksi.BGT_VC;
+                        worksheet.Cells[row, 33].Value = transaksi.BGT_CM;
+                        worksheet.Cells[row, 34].Value = transaksi.BGT_FX;
+                        worksheet.Cells[row, 35].Value = transaksi.BGT_Interest;
+                        worksheet.Cells[row, 36].Value = transaksi.BGT_CM_Excl;
+
+                        // Financial Data - Forecasts
+                        worksheet.Cells[row, 37].Value = transaksi.FCT_MT;
+                        worksheet.Cells[row, 38].Value = transaksi.FCT_Sales;
+                        worksheet.Cells[row, 39].Value = transaksi.FCT_VC;
+                        worksheet.Cells[row, 40].Value = transaksi.FCT_CM;
+
+                        // Additional Information
+                        worksheet.Cells[row, 41].Value = transaksi.PLANT;
+                        worksheet.Cells[row, 42].Value = transaksi.UOM;
+                        worksheet.Cells[row, 43].Value = transaksi.Category_1_8;
+                        worksheet.Cells[row, 44].Value = transaksi.Flour_Bran_Category;
+                        worksheet.Cells[row, 45].Value = transaksi.MPBP_Category;
+                        worksheet.Cells[row, 46].Value = transaksi.Series_Category;
+                        worksheet.Cells[row, 47].Value = transaksi.CONCATENATE1;
+                        worksheet.Cells[row, 48].Value = transaksi.GT_Industrial;
+                        worksheet.Cells[row, 49].Value = transaksi.GTINDExp;
+                        worksheet.Cells[row, 50].Value = transaksi.Area_Only;
+                        worksheet.Cells[row, 51].Value = transaksi.Remark;
+                        worksheet.Cells[row, 52].Value = transaksi.Month;
+                        worksheet.Cells[row, 53].Value = transaksi.Period;
+                        worksheet.Cells[row, 54].Value = transaksi.Year;
+                        worksheet.Cells[row, 55].Value = transaksi.Capacity;
+
+                        row++;
+                    }
+
+                    // Auto-fit columns
+                    worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
+
+                    // Save the package to a memory stream
+                    var stream = new MemoryStream();
+                    package.SaveAs(stream);
+                    stream.Position = 0;
+
+                    // Return the file as a response
+                    var fileName = $"Excel Commercial - {DateTime.Now.ToString("dd MMMM yyyy")}.xlsx";
+                    return File(stream, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", fileName);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions as needed
+                return StatusCode(500, "Internal server error: " + ex.Message);
+            }
+        }
 
 
         public IActionResult GetFilteredTransaksi(

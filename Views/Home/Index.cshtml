@@ -332,7 +332,8 @@
                                
                             </div> *@
                             <div class="d-flex justify-content-end mb-2">
-                                <button id="DeleteAllData" class="btn btn-danger">Delete All Data</button>
+                                <button id="DeleteAllData" class="btn btn-danger mr-4">Delete All Data</button>
+                                <button class="btn btn-success" onclick="window.open('@Url.Action("DownloadExcel", "Home")', '_blank')">Download All Excel</button>
                             </div>
 
                             <table id="table-monitoring" class="table table-hover table-bordered table-striped nowrap">
@@ -396,6 +397,8 @@
                                         <th>Channel by Product</th>
                                         <th>Biz Type</th>
                                         <th>Biz Size</th>
+                                        <th>BKKNonBKK</th>
+                                        <th>GT/IND/Exp</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -449,7 +452,7 @@
                     }
                 });
             });
-
+             
             $('#selectAll').on('change', function () {
                 const isChecked = $(this).is(':checked');
                 $('#table-monitoring tbody input[type="checkbox"]').prop('checked', isChecked);

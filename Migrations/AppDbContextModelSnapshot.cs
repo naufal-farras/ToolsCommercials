@@ -306,6 +306,9 @@ namespace ToolsCommercial.Migrations
                         .HasPrecision(18, 3)
                         .HasColumnType("decimal(18,3)");
 
+                    b.Property<string>("BKKNonBKK")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Biz_Size")
                         .HasColumnType("nvarchar(max)");
 
@@ -362,6 +365,9 @@ namespace ToolsCommercial.Migrations
                         .HasColumnType("decimal(18,3)");
 
                     b.Property<string>("Flour_Bran_Category")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("GTINDExp")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("GT_Industrial")

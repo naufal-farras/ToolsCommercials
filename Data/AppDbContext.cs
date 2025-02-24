@@ -103,6 +103,9 @@ namespace ToolsCommercial.Data
         public string? Channel_by_Product { get; set; }
         public string? Biz_Type { get; set; }
         public string? Biz_Size { get; set; }
+
+        public string? BKKNonBKK { get; set; }
+        public string? GTINDExp { get; set; }
         public DateTime UploadTime { get; set; }
         public bool IsActive { get; set; }
     }
