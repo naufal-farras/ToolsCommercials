@@ -946,72 +946,61 @@ namespace ToolsCommercial.Controllers
                     int row = 2;
                     foreach (var transaksi in transaksis)
                     {
-                        // Customer and Location Information
-                        worksheet.Cells[row, 1].Value = transaksi.Customer_No;
-                        worksheet.Cells[row, 2].Value = transaksi.Customer_Name;
-                        worksheet.Cells[row, 3].Value = transaksi.Area;
-                        worksheet.Cells[row, 4].Value = transaksi.Location;
-                        worksheet.Cells[row, 5].Value = transaksi.Customer_by_Channel;
-                        worksheet.Cells[row, 6].Value = transaksi.Customer_by_Area;
-                        worksheet.Cells[row, 7].Value = transaksi.Customer_Business_Size;
-                        worksheet.Cells[row, 8].Value = transaksi.Customers_Consumption;
-
-                        // Product and Sales Information
-                        worksheet.Cells[row, 9].Value = transaksi.Product;
-                        worksheet.Cells[row, 10].Value = transaksi.Sales_Person;
-                        worksheet.Cells[row, 11].Value = transaksi.Dscription;
-                        worksheet.Cells[row, 12].Value = transaksi.Sales_Mix;
-                        worksheet.Cells[row, 13].Value = transaksi.Product_Purpose;
-                        worksheet.Cells[row, 14].Value = transaksi.Channel_by_Product;
-                        worksheet.Cells[row, 15].Value = transaksi.Biz_Type;
-                        worksheet.Cells[row, 16].Value = transaksi.Biz_Size;
-                        worksheet.Cells[row, 17].Value = transaksi.BKKNonBKK;
-
-                        // Financial Data - Actuals
-                        worksheet.Cells[row, 18].Value = transaksi.ACT_MT;
-                        worksheet.Cells[row, 19].Value = transaksi.ACT_Gross_Sales;
-                        worksheet.Cells[row, 20].Value = transaksi.ACT_Freight_Local;
-                        worksheet.Cells[row, 21].Value = transaksi.ACT_Whs_Trf;
-                        worksheet.Cells[row, 22].Value = transaksi.ACT_Freight_Export;
-                        worksheet.Cells[row, 23].Value = transaksi.ACT_Loco_Sales;
-                        worksheet.Cells[row, 24].Value = transaksi.ACT_DM_Utility_Cost;
-                        worksheet.Cells[row, 25].Value = transaksi.ACT_CM_Excl;
-                        worksheet.Cells[row, 26].Value = transaksi.ACT_FX;
-                        worksheet.Cells[row, 27].Value = transaksi.ACT_Interest;
-                        worksheet.Cells[row, 28].Value = transaksi.ACTual_CM_Incl;
-                        worksheet.Cells[row, 29].Value = transaksi.OPEX;
-
-                        // Financial Data - Budgets
-                        worksheet.Cells[row, 30].Value = transaksi.BGT_MT;
-                        worksheet.Cells[row, 31].Value = transaksi.BGT_Sales;
-                        worksheet.Cells[row, 32].Value = transaksi.BGT_VC;
-                        worksheet.Cells[row, 33].Value = transaksi.BGT_CM;
-                        worksheet.Cells[row, 34].Value = transaksi.BGT_FX;
-                        worksheet.Cells[row, 35].Value = transaksi.BGT_Interest;
-                        worksheet.Cells[row, 36].Value = transaksi.BGT_CM_Excl;
-
-                        // Financial Data - Forecasts
-                        worksheet.Cells[row, 37].Value = transaksi.FCT_MT;
-                        worksheet.Cells[row, 38].Value = transaksi.FCT_Sales;
-                        worksheet.Cells[row, 39].Value = transaksi.FCT_VC;
-                        worksheet.Cells[row, 40].Value = transaksi.FCT_CM;
-
-                        // Additional Information
-                        worksheet.Cells[row, 41].Value = transaksi.PLANT;
-                        worksheet.Cells[row, 42].Value = transaksi.UOM;
-                        worksheet.Cells[row, 43].Value = transaksi.Category_1_8;
-                        worksheet.Cells[row, 44].Value = transaksi.Flour_Bran_Category;
-                        worksheet.Cells[row, 45].Value = transaksi.MPBP_Category;
-                        worksheet.Cells[row, 46].Value = transaksi.Series_Category;
-                        worksheet.Cells[row, 47].Value = transaksi.CONCATENATE1;
-                        worksheet.Cells[row, 48].Value = transaksi.GT_Industrial;
-                        worksheet.Cells[row, 49].Value = transaksi.GTINDExp;
+                        worksheet.Cells[row, 1].Value = transaksi.Area;
+                        worksheet.Cells[row, 2].Value = transaksi.Location;
+                        worksheet.Cells[row, 3].Value = transaksi.Customer_No;
+                        worksheet.Cells[row, 4].Value = transaksi.Customer_Name;
+                        worksheet.Cells[row, 5].Value = transaksi.Sales_Person;
+                        worksheet.Cells[row, 6].Value = transaksi.Dscription;
+                        worksheet.Cells[row, 7].Value = transaksi.Product;
+                        worksheet.Cells[row, 8].Value = transaksi.ACT_MT;
+                        worksheet.Cells[row, 9].Value = transaksi.ACT_Gross_Sales;
+                        worksheet.Cells[row, 10].Value = transaksi.ACT_Freight_Local;
+                        worksheet.Cells[row, 11].Value = transaksi.ACT_Whs_Trf;
+                        worksheet.Cells[row, 12].Value = transaksi.ACT_Freight_Export;
+                        worksheet.Cells[row, 13].Value = transaksi.ACT_Loco_Sales;
+                        worksheet.Cells[row, 14].Value = transaksi.ACT_DM_Utility_Cost;
+                        worksheet.Cells[row, 15].Value = transaksi.ACT_CM_Excl;
+                        worksheet.Cells[row, 16].Value = transaksi.ACT_FX;
+                        worksheet.Cells[row, 17].Value = transaksi.ACT_Interest;
+                        worksheet.Cells[row, 18].Value = transaksi.ACTual_CM_Incl;
+                        worksheet.Cells[row, 19].Value = transaksi.OPEX;
+                        worksheet.Cells[row, 20].Value = transaksi.Remark;
+                        worksheet.Cells[row, 21].Value = transaksi.Month;
+                        worksheet.Cells[row, 22].Value = transaksi.Period;
+                        worksheet.Cells[row, 23].Value = transaksi.Year;
+                        worksheet.Cells[row, 24].Value = transaksi.Capacity;
+                        worksheet.Cells[row, 25].Value = transaksi.BGT_MT;
+                        worksheet.Cells[row, 26].Value = transaksi.BGT_Sales;
+                        worksheet.Cells[row, 27].Value = transaksi.BGT_VC;
+                        worksheet.Cells[row, 28].Value = transaksi.BGT_CM;
+                        worksheet.Cells[row, 29].Value = transaksi.BGT_FX;
+                        worksheet.Cells[row, 30].Value = transaksi.BGT_Interest;
+                        worksheet.Cells[row, 31].Value = transaksi.BGT_CM_Excl;
+                        worksheet.Cells[row, 32].Value = transaksi.FCT_MT;
+                        worksheet.Cells[row, 33].Value = transaksi.FCT_Sales;
+                        worksheet.Cells[row, 34].Value = transaksi.FCT_VC;
+                        worksheet.Cells[row, 35].Value = transaksi.FCT_CM;
+                        worksheet.Cells[row, 36].Value = transaksi.PLANT;
+                        worksheet.Cells[row, 37].Value = transaksi.UOM;
+                        worksheet.Cells[row, 38].Value = transaksi.Category_1_8;
+                        worksheet.Cells[row, 39].Value = transaksi.Flour_Bran_Category;
+                        worksheet.Cells[row, 40].Value = transaksi.MPBP_Category;
+                        worksheet.Cells[row, 41].Value = transaksi.Series_Category;
+                        worksheet.Cells[row, 42].Value = transaksi.Sales_Mix;
+                        worksheet.Cells[row, 43].Value = transaksi.CONCATENATE1;
+                        worksheet.Cells[row, 44].Value = transaksi.Customer_by_Channel;
+                        worksheet.Cells[row, 45].Value = transaksi.Customer_by_Area;
+                        worksheet.Cells[row, 46].Value = transaksi.GT_Industrial;
+                        worksheet.Cells[row, 47].Value = transaksi.Customer_Business_Size;
+                        worksheet.Cells[row, 48].Value = transaksi.Customers_Consumption;
+                        worksheet.Cells[row, 49].Value = transaksi.Product_Purpose;
                         worksheet.Cells[row, 50].Value = transaksi.Area_Only;
-                        worksheet.Cells[row, 51].Value = transaksi.Remark;
-                        worksheet.Cells[row, 52].Value = transaksi.Month;
-                        worksheet.Cells[row, 53].Value = transaksi.Period;
-                        worksheet.Cells[row, 54].Value = transaksi.Year;
-                        worksheet.Cells[row, 55].Value = transaksi.Capacity;
+                        worksheet.Cells[row, 51].Value = transaksi.Channel_by_Product;
+                        worksheet.Cells[row, 52].Value = transaksi.Biz_Type;
+                        worksheet.Cells[row, 53].Value = transaksi.Biz_Size;
+                        worksheet.Cells[row, 54].Value = transaksi.BKKNonBKK;
+                        worksheet.Cells[row, 55].Value = transaksi.GTINDExp;
 
                         row++;
                     }
